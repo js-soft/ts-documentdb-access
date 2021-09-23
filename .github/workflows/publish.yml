@@ -16,6 +16,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: bash .ci/build.sh
       - run: bash .ci/test.sh
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.6.0
       - run: bash .ci/publish.sh
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
