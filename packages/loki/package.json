@@ -6,7 +6,8 @@
     "homepage": "https://enmeshed.eu",
     "repository": {
         "type": "git",
-        "url": "https://github.com/nmshd/cns-database.git"
+        "url": "https://github.com/nmshd/cns-database.git",
+        "directory": "packages/loki"
     },
     "license": "UNLICENSED",
     "main": "dist/index.js",
