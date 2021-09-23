@@ -2,7 +2,7 @@
     "name": "@nmshd/db-querystring",
     "version": "1.0.3",
     "description": "Parse and pass URL queries to MongoDB and LokiJS query",
-    "homepage": "https://github.com/nmshd/cns-database/#readme",
+    "homepage": "https://enmeshed.eu",
     "repository": {
         "type": "git",
         "url": "https://github.com/nmshd/cns-database.git"
