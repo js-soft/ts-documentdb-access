@@ -10,4 +10,4 @@ The documentation for this package is currently under construction.
 
 ## License
 
-[<LICENSE_NAME>](LICENSE)
+[UNLICENSED](LICENSE)
