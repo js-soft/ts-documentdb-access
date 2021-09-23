@@ -1,6 +1,6 @@
 # Database
 
-[![GitHub Actions CI](https://github.com/nmshd/cns-database/workflows/CI/badge.svg)](https://github.com/nmshd/cns-database/actions?query=workflow%3Apublish)
+[![GitHub Actions CI](https://github.com/nmshd/cns-database/workflows/Publish/badge.svg)](https://github.com/nmshd/cns-database/actions?query=workflow%3Apublish)
 
 This monorepo consolidates the following packages dealing with databases:
 
