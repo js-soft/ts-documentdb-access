@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "commonjs",
+        "sourceMap": true,
+        "declaration": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "outDir": "dist",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
+        "downlevelIteration": true,
+        "noImplicitReturns": true,
+        "strictNullChecks": true,
+        "lib": ["esnext", "dom"],
+        "typeRoots": ["./node_modules/@types"]
+    },
+    "include": ["src/**/*.ts"]
+}

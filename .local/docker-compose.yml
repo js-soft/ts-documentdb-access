@@ -1,0 +1,8 @@
+version: "3.1"
+
+services:
+  mongo:
+    container_name: database-mongo
+    image: mongo
+    ports:
+      - 27020:27017
