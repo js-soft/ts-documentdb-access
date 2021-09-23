@@ -2,9 +2,10 @@
     "name": "@nmshd/db-querystring",
     "version": "1.0.3",
     "description": "Parse and pass URL queries to MongoDB and LokiJS query",
+    "homepage": "https://github.com/nmshd/cns-database/#readme",
     "repository": {
         "type": "git",
-        "url": "git+https://bitbucket.org/jssoftgmbh/nmshd-cns-database.git"
+        "url": "https://github.com/nmshd/cns-database.git"
     },
     "license": "MIT",
     "author": "js-soft GmbH",
@@ -38,6 +39,6 @@
         "typescript": "^4.4.3"
     },
     "publishConfig": {
-        "registry": "https://nexus.js-soft.com/repository/npm-private/"
+        "access": "public"
     }
 }
