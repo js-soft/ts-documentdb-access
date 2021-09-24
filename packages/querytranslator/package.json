@@ -19,7 +19,8 @@
         "build": "tsc",
         "test:ci": "jest",
         "test:local": "../../.local/testSetup.sh && CONNECTION_STRING=\"mongodb://127.0.0.1:27020/?readPreference=primary&appname=Core&ssl=false\" jest",
-        "test:watch": "../../.local/testSetup.sh && CONNECTION_STRING=\"mongodb://127.0.0.1:27020/?readPreference=primary&appname=Core&ssl=false\" jest --watch"
+        "test:watch": "../../.local/testSetup.sh && CONNECTION_STRING=\"mongodb://127.0.0.1:27020/?readPreference=primary&appname=Core&ssl=false\" jest --watch",
+        "license-check": "license-check"
     },
     "jest": {
         "preset": "ts-jest",
@@ -30,6 +31,7 @@
         "@js-soft/docdb-access-abstractions": "1.0.0",
         "@js-soft/docdb-access-loki": "1.0.0",
         "@js-soft/docdb-access-mongo": "1.0.0",
+        "@js-soft/license-check": "1.0.2",
         "@types/jest": "^27.0.1",
         "@types/node": "^16.9.1",
         "@types/qs": "^6.9.7",
