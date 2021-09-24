@@ -1,5 +1,5 @@
 {
-    "name": "@nmshd/db-loki",
+    "name": "@js-soft/docdb-access-loki",
     "version": "1.0.0",
     "author": "j&s-soft GmbH",
     "description": "The LokiJS driver for Enmeshed.",
@@ -27,7 +27,7 @@
         "testTimeout": 60000
     },
     "dependencies": {
-        "@nmshd/db-abstractions": "1.0.0",
+        "@js-soft/docdb-access-abstractions": "1.0.0",
         "@types/lokijs": "1.5.6",
         "lokijs": "1.5.12"
     },

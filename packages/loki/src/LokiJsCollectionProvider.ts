@@ -1,4 +1,4 @@
-import { IDatabaseCollectionProvider } from "@nmshd/db-abstractions";
+import { IDatabaseCollectionProvider } from "@js-soft/docdb-access-abstractions";
 import { LokiJsCollection } from "./LokiJsCollection";
 import { LokiJsMap } from "./LokiJsMap";
 

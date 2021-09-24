@@ -1,4 +1,4 @@
-import { IDatabaseConnection } from "@nmshd/db-abstractions";
+import { IDatabaseConnection } from "@js-soft/docdb-access-abstractions";
 import { MongoClient, MongoClientOptions } from "mongodb";
 import { MongoDbCollectionProvider } from "./MongoDbCollectionProvider";
 

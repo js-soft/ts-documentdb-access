@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { DatabaseType, IDatabaseMap } from "@nmshd/db-abstractions";
+import { DatabaseType, IDatabaseMap } from "@js-soft/docdb-access-abstractions";
 
 export class LokiJsMap implements IDatabaseMap {
     public readonly name: string;

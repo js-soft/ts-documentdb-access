@@ -1,6 +1,6 @@
 # Database QueryString Parser
 
-[![npm version](https://badge.fury.io/js/@nmshd%2fdb-querystring.svg)](https://www.npmjs.com/package/@nmshd/db-querystring)
+[![npm version](https://badge.fury.io/js/@js-soft%2fdb-querystring.svg)](https://www.npmjs.com/package/@js-soft/docdb-querytranslator)
 
 Transforms URI query parameters to MongoDB and LokiJS compatible queries. This is useful for building user specificed queries.
 
@@ -53,13 +53,13 @@ Transforms URI query parameters to MongoDB and LokiJS compatible queries. This i
 ## Install
 
 ```
-npm install @nmshd/db-querystring --save
+npm install @js-soft/docdb-querytranslator --save
 ```
 
 ## API
 
 ```javascript
-var DbQueryString = require("@nmshd/db-querystring");
+var DbQueryString = require("@js-soft/docdb-querytranslator");
 ```
 
 ### new DbQueryString(`object` options)

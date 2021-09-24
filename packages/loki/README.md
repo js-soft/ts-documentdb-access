@@ -1,8 +1,8 @@
 # LokiJS Database Wrapper
 
-[![npm version](https://badge.fury.io/js/@nmshd%2fdb-loki.svg)](https://www.npmjs.com/package/@nmshd/db-loki)
+[![npm version](https://badge.fury.io/js/@js-soft%2fdb-loki.svg)](https://www.npmjs.com/package/@js-soft/docdb-access-loki)
 
-Implements the [database abstractions](https://www.npmjs.com/package/@nmshd/db-abstractions) for LokiJS.
+Implements the [database abstractions](https://www.npmjs.com/package/@js-soft/docdb-access-abstractions) for LokiJS.
 
 ## Documentation
 

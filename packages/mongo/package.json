@@ -1,5 +1,5 @@
 {
-    "name": "@nmshd/db-mongo",
+    "name": "@js-soft/docdb-access-mongo",
     "version": "1.0.0",
     "description": "The MongoDB driver for Enmeshed.",
     "homepage": "https://enmeshed.eu",
@@ -27,7 +27,7 @@
         "testTimeout": 60000
     },
     "dependencies": {
-        "@nmshd/db-abstractions": "1.0.0",
+        "@js-soft/docdb-access-abstractions": "1.0.0",
         "@types/mongodb": "4.0.6",
         "mongodb": "4.1.1"
     },

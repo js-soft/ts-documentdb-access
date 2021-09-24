@@ -1,4 +1,4 @@
-import { IDatabaseConnection } from "@nmshd/db-abstractions";
+import { IDatabaseConnection } from "@js-soft/docdb-access-abstractions";
 import Lokijs from "lokijs";
 import { ILokiJsDatabaseFactory } from "./ILokiJsDatabaseFactory";
 import { LokiJsCollectionProvider } from "./LokiJsCollectionProvider";

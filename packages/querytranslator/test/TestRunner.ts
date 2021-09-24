@@ -1,4 +1,4 @@
-import { IDatabaseCollection, IDatabaseCollectionProvider } from "@nmshd/db-abstractions";
+import { IDatabaseCollection, IDatabaseCollectionProvider } from "@js-soft/docdb-access-abstractions";
 import qs from "qs";
 import DbQueryString from "../src";
 

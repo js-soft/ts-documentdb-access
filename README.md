@@ -7,7 +7,7 @@ This monorepo consolidates the following packages dealing with databases:
 -   [Database Abstractions](packages/abstractions/)
 -   [LokiJS Database Wrapper](packages/loki/)
 -   [MongoDB Database Wrapper](packages/mongo/)
--   [Database QueryString Parser](packages/querystring/)
+-   [Database QueryTranslator](packages/querytranslator/)
 
 ## Documentation
 

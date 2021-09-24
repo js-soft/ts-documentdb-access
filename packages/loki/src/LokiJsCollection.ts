@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { DatabasePaginationOptions, DatabaseType, IDatabaseCollection } from "@nmshd/db-abstractions";
+import {DatabasePaginationOptions, DatabaseType, IDatabaseCollection} from "@js-soft/docdb-access-abstractions";
 
 export class LokiJsCollection implements IDatabaseCollection {
     public readonly name: string;
