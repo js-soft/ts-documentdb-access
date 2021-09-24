@@ -2,7 +2,7 @@
     "name": "@js-soft/docdb-access-loki",
     "version": "1.0.0",
     "author": "j&s-soft GmbH",
-    "description": "The LokiJS driver for the '@js-soft/@js-soft/docdb-access-abstractions' library.",
+    "description": "The LokiJS implementation for the '@js-soft/@js-soft/docdb-access-abstractions' library.",
     "homepage": "https://github.com/js-soft/ts-documentdb-access#readme",
     "repository": {
         "type": "git",

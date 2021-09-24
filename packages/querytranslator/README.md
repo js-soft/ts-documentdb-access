@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/@js-soft%2fdocdb-querytranslator.svg)](https://www.npmjs.com/package/@js-soft/docdb-querytranslator)
 
-Transforms URI query parameters to MongoDB and LokiJS compatible queries. This is useful for building user specificed queries.
+Translates URI query parameters to MongoDB and LokiJS compatible queries. This is useful for building user specified queries.
 
 ## Features
 
