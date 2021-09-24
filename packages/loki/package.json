@@ -9,7 +9,7 @@
         "url": "https://github.com/nmshd/cns-database.git",
         "directory": "packages/loki"
     },
-    "license": "UNLICENSED",
+    "license": "MIT",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [

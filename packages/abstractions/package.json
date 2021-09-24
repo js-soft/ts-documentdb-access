@@ -8,7 +8,7 @@
         "url": "https://github.com/nmshd/cns-database.git",
         "directory": "packages/abstractions"
     },
-    "license": "UNLICENSED",
+    "license": "MIT",
     "author": "j&s-soft GmbH",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
