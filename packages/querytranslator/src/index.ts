@@ -1,3 +1,1 @@
-import { DbQueryTranslator } from "./DbQueryTranslator";
-
-export default DbQueryTranslator;
+export { QueryTranslator } from "./QueryTranslator";

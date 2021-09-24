@@ -1,10 +1,10 @@
 import { IDatabaseCollection, IDatabaseCollectionProvider } from "@js-soft/docdb-access-abstractions";
 import qs from "qs";
-import DbQueryTranslator from "../src";
+import { QueryTranslator } from "../src";
 
 export class TestRunner {
     private collection: IDatabaseCollection;
-    private readonly dbqs = new DbQueryTranslator();
+    private readonly dbqs = new QueryTranslator();
     private testObject: any;
 
     private async createTestObject() {
@@ -46,7 +46,7 @@ export class TestRunner {
         test("custom", () => this.testCustomQuery());
     }
 
-    private async queryFromString(queryString: string, shouldContain: boolean, dbqs: DbQueryTranslator = this.dbqs) {
+    private async queryFromString(queryString: string, shouldContain: boolean, dbqs: QueryTranslator = this.dbqs) {
         const qsParsed = qs.parse(queryString);
         const dbqsParsed = dbqs.parse(qsParsed);
         const result = await this.collection.find(dbqsParsed);
@@ -177,7 +177,7 @@ export class TestRunner {
     }
 
     private async testCustomQuery() {
-        const customDBQS = new DbQueryTranslator({
+        const customDBQS = new QueryTranslator({
             custom: {
                 anyNum: (query, input) => {
                     const val = customDBQS.parseStringVal(input);
