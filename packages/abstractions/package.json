@@ -2,7 +2,7 @@
     "name": "@js-soft/docdb-access-abstractions",
     "version": "1.0.0",
     "description": "Database abstractions.",
-    "homepage": "https://enmeshed.eu",
+    "homepage": "https://github.com/js-soft/ts-documentdb-access#readme",
     "repository": {
         "type": "git",
         "url": "https://github.com/js-soft/ts-documentdb-access.git",

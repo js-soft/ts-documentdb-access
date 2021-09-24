@@ -2,7 +2,7 @@
     "name": "@js-soft/docdb-querytranslator",
     "version": "1.0.0",
     "description": "Parse and pass URL queries to MongoDB and LokiJS query",
-    "homepage": "https://enmeshed.eu",
+    "homepage": "https://github.com/js-soft/ts-documentdb-access#readme",
     "repository": {
         "type": "git",
         "url": "https://github.com/js-soft/ts-documentdb-access.git",

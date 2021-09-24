@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/@js-soft%2fdb-abstractions.svg)](https://www.npmjs.com/package/@js-soft/docdb-access-abstractions)
 
-This package defines database abstractions for Enmeshed.
+This package defines document-database abstractions.
 
 ## Documentation
 

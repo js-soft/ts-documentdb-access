@@ -1,8 +1,8 @@
 {
     "name": "@js-soft/docdb-access-mongo",
     "version": "1.0.0",
-    "description": "The MongoDB driver for Enmeshed.",
-    "homepage": "https://enmeshed.eu",
+    "description": "The MongoDB driver for the '@js-soft/@js-soft/docdb-access-abstractions' library.",
+    "homepage": "https://github.com/js-soft/ts-documentdb-access#readme",
     "repository": {
         "type": "git",
         "url": "https://github.com/js-soft/ts-documentdb-access.git",
