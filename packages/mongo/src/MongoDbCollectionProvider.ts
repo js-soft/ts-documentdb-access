@@ -1,4 +1,4 @@
-import { IDatabaseCollectionProvider } from "@nmshd/db-abstractions";
+import { IDatabaseCollectionProvider } from "@js-soft/docdb-access-abstractions";
 import { Db } from "mongodb";
 import { MongoDbCollection } from "./MongoDbCollection";
 import { MongoDbMap } from "./MongoDbMap";

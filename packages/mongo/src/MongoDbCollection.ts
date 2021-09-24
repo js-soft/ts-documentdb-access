@@ -1,4 +1,4 @@
-import { DatabasePaginationOptions, DatabaseType, IDatabaseCollection } from "@nmshd/db-abstractions";
+import { DatabasePaginationOptions, DatabaseType, IDatabaseCollection } from "@js-soft/docdb-access-abstractions";
 import { Collection } from "mongodb";
 import { removeContainsInQuery } from "./queryUtils";
 

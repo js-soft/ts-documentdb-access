@@ -9,7 +9,7 @@
 
 ### all
 
-run `lerna run test:local --stream` in the root folder
+run `lerna run test:local` in the root folder
 
 `lerna run **` will run the given npm script in all packages that contain it. In that case it will run the `test:local` script in the packages.
 

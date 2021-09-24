@@ -1,10 +1,10 @@
-import { IDatabaseCollection, IDatabaseCollectionProvider } from "@nmshd/db-abstractions";
+import { IDatabaseCollection, IDatabaseCollectionProvider } from "@js-soft/docdb-access-abstractions";
 import qs from "qs";
-import DbQueryString from "../src";
+import { QueryTranslator } from "../src";
 
 export class TestRunner {
     private collection: IDatabaseCollection;
-    private readonly dbqs = new DbQueryString();
+    private readonly dbqs = new QueryTranslator();
     private testObject: any;
 
     private async createTestObject() {
@@ -37,7 +37,7 @@ export class TestRunner {
         test("num", () => this.queryNumberValues());
         test("negNum", () => this.queryNegativeNumberValues());
         test("float", () => this.queryFloatValues());
-        test("string", () => this.queryStringValues());
+        test("string", () => this.queryTranslatorValues());
         test("date", () => this.queryIsoDateValues());
         test("bool", () => this.queryBoolValues());
         test("or", () => this.queryOr());
@@ -46,7 +46,7 @@ export class TestRunner {
         test("custom", () => this.testCustomQuery());
     }
 
-    private async queryFromString(queryString: string, shouldContain: boolean, dbqs: DbQueryString = this.dbqs) {
+    private async queryFromString(queryString: string, shouldContain: boolean, dbqs: QueryTranslator = this.dbqs) {
         const qsParsed = qs.parse(queryString);
         const dbqsParsed = dbqs.parse(qsParsed);
         const result = await this.collection.find(dbqsParsed);
@@ -120,7 +120,7 @@ export class TestRunner {
         await this.queryFromString("float=<=6.1", true);
     }
 
-    private async queryStringValues() {
+    private async queryTranslatorValues() {
         await this.queryFromString("string=a-string", true);
 
         await this.queryFromString("string=^a-", true);
@@ -177,7 +177,7 @@ export class TestRunner {
     }
 
     private async testCustomQuery() {
-        const customDBQS = new DbQueryString({
+        const customDBQS = new QueryTranslator({
             custom: {
                 anyNum: (query, input) => {
                     const val = customDBQS.parseStringVal(input);

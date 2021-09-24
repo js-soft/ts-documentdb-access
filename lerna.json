@@ -6,5 +6,8 @@
             "gitTagVersion": false,
             "exact": true
         }
+    },
+    "run": {
+        "stream": true
     }
 }

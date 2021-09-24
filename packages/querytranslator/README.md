@@ -1,8 +1,8 @@
-# Database QueryString Parser
+# Database QueryTranslator
 
-[![npm version](https://badge.fury.io/js/@nmshd%2fdb-querystring.svg)](https://www.npmjs.com/package/@nmshd/db-querystring)
+[![npm version](https://badge.fury.io/js/@js-soft%2fdocdb-querytranslator.svg)](https://www.npmjs.com/package/@js-soft/docdb-querytranslator)
 
-Transforms URI query parameters to MongoDB and LokiJS compatible queries. This is useful for building user specificed queries.
+Translates URI query parameters to MongoDB and LokiJS compatible queries. This is useful for building user specified queries.
 
 ## Features
 
@@ -53,16 +53,18 @@ Transforms URI query parameters to MongoDB and LokiJS compatible queries. This i
 ## Install
 
 ```
-npm install @nmshd/db-querystring --save
+npm install @js-soft/docdb-querytranslator --save
 ```
 
 ## API
 
 ```javascript
-var DbQueryString = require("@nmshd/db-querystring");
+var QueryTranslator = require("@js-soft/docdb-querytranslator").QueryTranslator;
+
+import { QueryTranslator } from "@js-soft/docdb-querytranslator";
 ```
 
-### new DbQueryString(`object` options)
+### new QueryTranslator(`object` options)
 
 -   `Array` ops - list of supported operators (default: `['!', '^', '$', '~', '>', '<', '$in']`)
 -   `object` alias - query param aliases (default: `{}`)
@@ -82,7 +84,7 @@ that your users will be using and a function which takes the result query object
 and the value for query parameter.
 
 ```javascript
-var qs = new DbQueryString({
+var qt = new QueryTranslator({
     custom: {
         urlQueryParamName: function (query, input) {
             // do some processing of input value

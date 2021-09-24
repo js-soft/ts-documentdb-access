@@ -1,4 +1,4 @@
-import { DatabaseType, IDatabaseMap } from "@nmshd/db-abstractions";
+import { DatabaseType, IDatabaseMap } from "@js-soft/docdb-access-abstractions";
 import { Collection } from "mongodb";
 
 export class MongoDbMap implements IDatabaseMap {

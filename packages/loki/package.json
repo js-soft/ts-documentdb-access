@@ -1,14 +1,15 @@
 {
-    "name": "@nmshd/db-loki",
+    "name": "@js-soft/docdb-access-loki",
     "version": "1.0.0",
     "author": "j&s-soft GmbH",
-    "description": "The LokiJS driver for Enmeshed.",
-    "homepage": "https://enmeshed.eu",
+    "description": "The LokiJS implementation for the '@js-soft/@js-soft/docdb-access-abstractions' library.",
+    "homepage": "https://github.com/js-soft/ts-documentdb-access#readme",
     "repository": {
         "type": "git",
-        "url": "https://github.com/nmshd/cns-database.git"
+        "url": "https://github.com/js-soft/ts-documentdb-access.git",
+        "directory": "packages/loki"
     },
-    "license": "UNLICENSED",
+    "license": "MIT",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
@@ -18,7 +19,8 @@
         "build": "tsc",
         "test": "jest",
         "test:ci": "npm run test",
-        "test:local": "npm run test"
+        "test:local": "npm run test",
+        "license-check": "license-check"
     },
     "jest": {
         "preset": "ts-jest",
@@ -26,11 +28,12 @@
         "testTimeout": 60000
     },
     "dependencies": {
-        "@nmshd/db-abstractions": "1.0.0",
+        "@js-soft/docdb-access-abstractions": "1.0.0",
         "@types/lokijs": "1.5.6",
         "lokijs": "1.5.12"
     },
     "devDependencies": {
+        "@js-soft/license-check": "1.0.2",
         "@types/jest": "^27.0.1",
         "@types/node": "^16.9.1",
         "@types/qs": "^6.9.7",

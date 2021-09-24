@@ -1,13 +1,13 @@
 # Database
 
-[![GitHub Actions CI](https://github.com/nmshd/cns-database/workflows/CI/badge.svg)](https://github.com/nmshd/cns-database/actions?query=workflow%3Apublish)
+[![GitHub Actions CI](https://github.com/js-soft/ts-documentdb-access/workflows/Publish/badge.svg)](https://github.com/js-soft/ts-documentdb-access/actions?query=workflow%3APublish)
 
 This monorepo consolidates the following packages dealing with databases:
 
 -   [Database Abstractions](packages/abstractions/)
 -   [LokiJS Database Wrapper](packages/loki/)
 -   [MongoDB Database Wrapper](packages/mongo/)
--   [Database QueryString Parser](packages/querystring/)
+-   [Database QueryTranslator](packages/querytranslator/)
 
 ## Documentation
 

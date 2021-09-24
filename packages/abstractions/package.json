@@ -1,13 +1,14 @@
 {
-    "name": "@nmshd/db-abstractions",
+    "name": "@js-soft/docdb-access-abstractions",
     "version": "1.0.0",
     "description": "Database abstractions.",
-    "homepage": "https://enmeshed.eu",
+    "homepage": "https://github.com/js-soft/ts-documentdb-access#readme",
     "repository": {
         "type": "git",
-        "url": "https://github.com/nmshd/cns-database.git"
+        "url": "https://github.com/js-soft/ts-documentdb-access.git",
+        "directory": "packages/abstractions"
     },
-    "license": "UNLICENSED",
+    "license": "MIT",
     "author": "j&s-soft GmbH",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -15,9 +16,11 @@
         "dist"
     ],
     "scripts": {
-        "build": "tsc"
+        "build": "tsc",
+        "license-check": "license-check"
     },
     "devDependencies": {
+        "@js-soft/license-check": "1.0.2",
         "typescript": "^4.4.3"
     },
     "publishConfig": {

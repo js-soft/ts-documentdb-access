@@ -1,7 +1,7 @@
-import { DbQueryStringOptions } from "./DbQueryStringOptions";
+import { QueryTranslatorOptions } from "./QueryTranslatorOptions";
 import { StringOperations } from "./StringOperations";
 
-export class DbQueryString {
+export class QueryTranslator {
     private static defaultKeyRegex = /^[A-z_@][A-z@0-9-_]*(\.[A-z_@][A-z@0-9-_]*)*$/;
     private static defaultValRegex?: RegExp = undefined;
     private static defaultArrRegex = /^[a-zæøå0-9-_.]+(\[])?$/i;
@@ -17,7 +17,7 @@ export class DbQueryString {
     private readonly valRegex?: RegExp;
     private readonly arrRegex: RegExp;
 
-    public constructor(options: DbQueryStringOptions = {}) {
+    public constructor(options: QueryTranslatorOptions = {}) {
         this.ops = options.ops ?? ["!", "^", "$", "~", ">", "<", "$in"];
         this.alias = options.alias ?? {};
         this.blacklist = options.blacklist ?? {};
@@ -29,21 +29,21 @@ export class DbQueryString {
         this.string.toBoolean = typeof options.string.toBoolean === "boolean" ? options.string.toBoolean : true;
         this.string.toNumber = typeof options.string.toNumber === "boolean" ? options.string.toNumber : true;
 
-        this.keyRegex = options.keyRegex ?? DbQueryString.defaultKeyRegex;
-        this.valRegex = options.valRegex ?? DbQueryString.defaultValRegex;
-        this.arrRegex = options.arrRegex ?? DbQueryString.defaultArrRegex;
+        this.keyRegex = options.keyRegex ?? QueryTranslator.defaultKeyRegex;
+        this.valRegex = options.valRegex ?? QueryTranslator.defaultValRegex;
+        this.arrRegex = options.arrRegex ?? QueryTranslator.defaultArrRegex;
     }
 
     public static setDefaultKeyRegex(regex: RegExp): void {
-        DbQueryString.defaultKeyRegex = regex;
+        QueryTranslator.defaultKeyRegex = regex;
     }
 
     public static setDefaultValRegex(regex: RegExp): void {
-        DbQueryString.defaultValRegex = regex;
+        QueryTranslator.defaultValRegex = regex;
     }
 
     public static setDefaultArrRegex(regex: RegExp): void {
-        DbQueryString.defaultArrRegex = regex;
+        QueryTranslator.defaultArrRegex = regex;
     }
 
     public parseString(string: string, array?: boolean): any {
