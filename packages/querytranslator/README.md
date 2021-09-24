@@ -59,10 +59,12 @@ npm install @js-soft/docdb-querytranslator --save
 ## API
 
 ```javascript
-var DbQueryTranslator = require("@js-soft/docdb-querytranslator");
+var QueryTranslator = require("@js-soft/docdb-querytranslator").QueryTranslator;
+
+import { QueryTranslator } from "@js-soft/docdb-querytranslator";
 ```
 
-### new DbQueryTranslator(`object` options)
+### new QueryTranslator(`object` options)
 
 -   `Array` ops - list of supported operators (default: `['!', '^', '$', '~', '>', '<', '$in']`)
 -   `object` alias - query param aliases (default: `{}`)
@@ -82,7 +84,7 @@ that your users will be using and a function which takes the result query object
 and the value for query parameter.
 
 ```javascript
-var qt = new DbQueryTranslator({
+var qt = new QueryTranslator({
     custom: {
         urlQueryParamName: function (query, input) {
             // do some processing of input value
