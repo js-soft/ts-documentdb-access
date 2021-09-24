@@ -1,4 +1,4 @@
-# Database QueryString Parser
+# Database QueryTranslator
 
 [![npm version](https://badge.fury.io/js/@js-soft%2fdocdb-querytranslator.svg)](https://www.npmjs.com/package/@js-soft/docdb-querytranslator)
 
@@ -59,10 +59,10 @@ npm install @js-soft/docdb-querytranslator --save
 ## API
 
 ```javascript
-var DbQueryString = require("@js-soft/docdb-querytranslator");
+var DbQueryTranslator = require("@js-soft/docdb-querytranslator");
 ```
 
-### new DbQueryString(`object` options)
+### new DbQueryTranslator(`object` options)
 
 -   `Array` ops - list of supported operators (default: `['!', '^', '$', '~', '>', '<', '$in']`)
 -   `object` alias - query param aliases (default: `{}`)
@@ -82,7 +82,7 @@ that your users will be using and a function which takes the result query object
 and the value for query parameter.
 
 ```javascript
-var qs = new DbQueryString({
+var qt = new DbQueryTranslator({
     custom: {
         urlQueryParamName: function (query, input) {
             // do some processing of input value

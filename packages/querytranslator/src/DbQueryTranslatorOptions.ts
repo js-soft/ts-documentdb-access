@@ -1,6 +1,6 @@
 import { StringOperations } from "./StringOperations";
 
-export interface DbQueryStringOptions {
+export interface DbQueryTranslatorOptions {
     ops?: string[];
     alias?: any;
     blacklist?: Record<string, boolean>;

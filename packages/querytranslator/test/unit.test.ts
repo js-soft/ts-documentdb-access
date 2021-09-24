@@ -1,12 +1,12 @@
 import qs from "qs";
 import querystring from "querystring";
-import DbQueryString from "../src";
+import DbQueryTranslator from "../src";
 
 describe("parseStringVal()", () => {
-    const dbqsWithParsing = new DbQueryString({
+    const dbqsWithParsing = new DbQueryTranslator({
         keyRegex: /^[a-zæøå0-9-_.]+$/i
     });
-    const dbqsWithoutParsing = new DbQueryString({
+    const dbqsWithoutParsing = new DbQueryTranslator({
         keyRegex: /^[a-zæøå0-9-_.]+$/i,
         string: { toNumber: false, toBoolean: false }
     });
@@ -131,7 +131,7 @@ describe("parseStringVal()", () => {
 });
 
 describe("parseString()", () => {
-    const dbqs = new DbQueryString({
+    const dbqs = new DbQueryTranslator({
         keyRegex: /^[a-zæøå0-9-_.]+$/i
     });
     test('returns $nin for "!" operator when array is true', () => {
@@ -269,7 +269,7 @@ describe("parseString()", () => {
 });
 
 describe("parse()", () => {
-    const dbqs = new DbQueryString({
+    const dbqs = new DbQueryTranslator({
         keyRegex: /^[a-zæøå0-9-_.]+$/i
     });
     describe("parsing", () => {
@@ -640,7 +640,7 @@ describe("parse()", () => {
 
     describe("aliasing", () => {
         test("returns query for aliased key", () => {
-            const dbqs = new DbQueryString({
+            const dbqs = new DbQueryTranslator({
                 alias: {
                     foo: "bar"
                 }
@@ -656,7 +656,7 @@ describe("parse()", () => {
         });
 
         test("returns multiple queries for aliased keys", () => {
-            const dbqs = new DbQueryString({
+            const dbqs = new DbQueryTranslator({
                 alias: {
                     foo: "bar",
                     baz: "bax"
@@ -677,7 +677,7 @@ describe("parse()", () => {
 
     describe("blacklisting", () => {
         test("does not return query for blacklisted key", () => {
-            const dbqs = new DbQueryString({
+            const dbqs = new DbQueryTranslator({
                 blacklist: {
                     foo: true
                 }
@@ -694,7 +694,7 @@ describe("parse()", () => {
         });
 
         test("does not return multiple query for blacklisted keys", () => {
-            const dbqs = new DbQueryString({
+            const dbqs = new DbQueryTranslator({
                 blacklist: {
                     foo: true,
                     bar: true
@@ -715,7 +715,7 @@ describe("parse()", () => {
 
     describe("whitelisting", () => {
         test("returns query only for whitelisted key", () => {
-            const dbqs = new DbQueryString({
+            const dbqs = new DbQueryTranslator({
                 whitelist: {
                     foo: true
                 }
@@ -733,7 +733,7 @@ describe("parse()", () => {
         });
 
         test("returns multiple queries for whitelisted keys", () => {
-            const dbqs = new DbQueryString({
+            const dbqs = new DbQueryTranslator({
                 whitelist: {
                     foo: true,
                     bar: true
