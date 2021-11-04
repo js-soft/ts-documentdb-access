@@ -10,6 +10,10 @@ export class MongoDbMap implements IDatabaseMap {
     }
 
     public async set(name: string, value: any): Promise<void> {
+        if (typeof value.toJSON === "function") {
+            value = value.toJSON();
+        }
+
         await this.collection.findOneAndReplace(
             { name: name },
             {

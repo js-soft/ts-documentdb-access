@@ -16,6 +16,11 @@ export class LokiJsMap implements IDatabaseMap {
         if (typeof this._map === "undefined") {
             await this.initMap();
         }
+
+        if (typeof value.toJSON === "function") {
+            value = value.toJSON();
+        }
+
         const current = this._map.get(name);
 
         this._map.set(name, { name: name, value: value });

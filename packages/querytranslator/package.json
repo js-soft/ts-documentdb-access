@@ -29,8 +29,8 @@
     },
     "devDependencies": {
         "@js-soft/docdb-access-abstractions": "1.0.1",
-        "@js-soft/docdb-access-loki": "1.0.1",
-        "@js-soft/docdb-access-mongo": "1.0.1",
+        "@js-soft/docdb-access-loki": "1.0.2",
+        "@js-soft/docdb-access-mongo": "1.0.2",
         "@js-soft/license-check": "1.0.2",
         "@types/jest": "^27.0.1",
         "@types/node": "^16.9.1",
