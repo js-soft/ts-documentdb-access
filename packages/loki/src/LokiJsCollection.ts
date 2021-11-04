@@ -27,15 +27,12 @@ export class LokiJsCollection implements IDatabaseCollection {
     }
 
     public async update(oldDocument: any, data: any): Promise<any> {
-        let document: any;
         if (typeof data.toJSON === "function") {
-            document = data.toJSON();
-        } else {
-            document = data;
+            data = data.toJSON();
         }
 
-        document.$loki = oldDocument.$loki;
-        document.meta = oldDocument.meta;
+        data.$loki = oldDocument.$loki;
+        data.meta = oldDocument.meta;
 
         this.collection.update(document);
         return data;
