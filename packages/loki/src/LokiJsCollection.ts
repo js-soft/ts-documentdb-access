@@ -34,7 +34,7 @@ export class LokiJsCollection implements IDatabaseCollection {
         data.$loki = oldDocument.$loki;
         data.meta = oldDocument.meta;
 
-        this.collection.update(document);
+        this.collection.update(data);
         return data;
     }
 
