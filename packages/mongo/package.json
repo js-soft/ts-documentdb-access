@@ -1,6 +1,6 @@
 {
     "name": "@js-soft/docdb-access-mongo",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "The MongoDB implementation for the '@js-soft/@js-soft/docdb-access-abstractions' library.",
     "homepage": "https://github.com/js-soft/ts-documentdb-access#readme",
     "repository": {
@@ -29,8 +29,7 @@
     },
     "dependencies": {
         "@js-soft/docdb-access-abstractions": "1.0.1",
-        "@types/mongodb": "4.0.6",
-        "mongodb": "4.1.1"
+        "mongodb": "4.2.0"
     },
     "devDependencies": {
         "@js-soft/license-check": "1.0.2",
