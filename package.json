@@ -10,10 +10,10 @@
         "lint:tsc": "lerna run build"
     },
     "devDependencies": {
-        "@js-soft/eslint-config-ts": "1.3.3",
-        "eslint": "^7.32.0",
+        "@js-soft/eslint-config-ts": "1.4.2",
+        "eslint": "^8.7.0",
         "lerna": "^4.0.0",
-        "prettier": "^2.4.1",
-        "typescript": "^4.4.3"
+        "prettier": "^2.5.1",
+        "typescript": "^4.5.4"
     }
 }
