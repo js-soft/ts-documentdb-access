@@ -632,7 +632,9 @@ describe("parse()", () => {
                 bar: { $exists: false },
                 baz: { $ne: "foo" },
                 bix: "bez",
+                // eslint-disable-next-line @typescript-eslint/naming-convention
                 "bix.bax": "that",
+                // eslint-disable-next-line @typescript-eslint/naming-convention
                 "foo-bar": "bar-foo"
             });
         });

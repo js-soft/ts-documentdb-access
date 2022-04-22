@@ -9,7 +9,7 @@ export class MongoDbConnection implements IDatabaseConnection {
     }
 
     public constructor(connectionString: string, config: MongoClientOptions = {}) {
-        this._client = new MongoClient(connectionString, config);
+        this._client = new MongoClient(connectionString, { ...config, ignoreUndefined: true });
     }
 
     public async connect(): Promise<this> {
