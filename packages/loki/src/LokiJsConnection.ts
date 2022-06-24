@@ -2,26 +2,41 @@ import { IDatabaseConnection } from "@js-soft/docdb-access-abstractions";
 import Lokijs from "lokijs";
 import { ILokiJsDatabaseFactory } from "./ILokiJsDatabaseFactory";
 import { LokiJsCollectionProvider } from "./LokiJsCollectionProvider";
+import { LokiJsOptions } from "./LokiJsOptions";
 
 export class LokiJsConnection implements IDatabaseConnection {
     private readonly providers: Map<string, LokiJsCollectionProvider>;
 
     private static readonly defaultDatabaseFactory = {
-        create: (
-            filename: string,
-            options:
-                | (Partial<LokiConstructorOptions> & Partial<LokiConfigOptions> & Partial<ThrottledSaveDrainOptions>)
-                | undefined
-        ): Loki => {
+        create: (filename: string, options?: LokiJsOptions): Loki => {
             return new Lokijs(filename, options);
         }
     };
 
     public constructor(
         private readonly folder: string,
-        private readonly databaseFactory: ILokiJsDatabaseFactory = LokiJsConnection.defaultDatabaseFactory
+        private readonly databaseFactory: ILokiJsDatabaseFactory = LokiJsConnection.defaultDatabaseFactory,
+        private readonly lokiJsOptions: LokiJsOptions = {}
     ) {
         this.providers = new Map();
+    }
+
+    public static fileSystem(
+        folder: string,
+        lokiJsOptions?: Omit<LokiJsOptions, "persistenceMethod">
+    ): LokiJsConnection {
+        return new LokiJsConnection(folder, this.defaultDatabaseFactory, { ...lokiJsOptions, persistenceMethod: "fs" });
+    }
+
+    public static localStorage(lokiJsOptions?: Omit<LokiJsOptions, "persistenceMethod">): LokiJsConnection {
+        return new LokiJsConnection("", this.defaultDatabaseFactory, {
+            ...lokiJsOptions,
+            persistenceMethod: "localStorage"
+        });
+    }
+
+    public static inMemory(lokiJsOptions?: Omit<LokiJsOptions, "persistenceMethod">): LokiJsConnection {
+        return new LokiJsConnection("", this.defaultDatabaseFactory, { ...lokiJsOptions, persistenceMethod: "memory" });
     }
 
     private onCollectionClosed(name: string) {
@@ -37,6 +52,7 @@ export class LokiJsConnection implements IDatabaseConnection {
         const that = this;
         return await new Promise((resolve) => {
             const db: Loki = this.databaseFactory.create(`${this.folder}/${name}.db`, {
+                ...this.lokiJsOptions,
                 autoload: true,
                 autosave: true,
                 autosaveInterval: 5000,

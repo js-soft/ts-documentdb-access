@@ -1,6 +1,5 @@
+import { LokiJsOptions } from "./LokiJsOptions";
+
 export interface ILokiJsDatabaseFactory {
-    create(
-        filename: string,
-        options?: Partial<LokiConstructorOptions> & Partial<LokiConfigOptions> & Partial<ThrottledSaveDrainOptions>
-    ): Loki;
+    create(filename: string, options?: LokiJsOptions): Loki;
 }

@@ -1,6 +1,6 @@
 import { LokiJsCollectionProvider, LokiJsConnection } from "../src";
 
-const connection = new LokiJsConnection("./db");
+const connection = LokiJsConnection.inMemory();
 let database: LokiJsCollectionProvider;
 
 beforeAll(async () => {

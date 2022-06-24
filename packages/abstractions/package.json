@@ -20,8 +20,8 @@
         "license-check": "license-check"
     },
     "devDependencies": {
-        "@js-soft/license-check": "1.0.2",
-        "typescript": "^4.4.3"
+        "@js-soft/license-check": "1.0.4",
+        "typescript": "^4.7.4"
     },
     "publishConfig": {
         "access": "public"
