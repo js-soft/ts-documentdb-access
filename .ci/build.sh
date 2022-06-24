@@ -3,13 +3,12 @@ set -x
 
 npm ci
 
-npx lerna bootstrap
-npx lerna run build
+npm run build --workspaces
 
 # linting
 npm run lint:eslint
 npm run lint:prettier
 
 # auditing
-npx lerna run license-check
-npx lerna-audit --no-fix
+npm exec --workspaces -- npx license-check
+npx better-npm-audit audit
