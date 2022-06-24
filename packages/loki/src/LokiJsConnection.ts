@@ -15,10 +15,28 @@ export class LokiJsConnection implements IDatabaseConnection {
 
     public constructor(
         private readonly folder: string,
-        private readonly lokiJsOptions: LokiJsOptions = {},
-        private readonly databaseFactory: ILokiJsDatabaseFactory = LokiJsConnection.defaultDatabaseFactory
+        private readonly databaseFactory: ILokiJsDatabaseFactory = LokiJsConnection.defaultDatabaseFactory,
+        private readonly lokiJsOptions: LokiJsOptions = {}
     ) {
         this.providers = new Map();
+    }
+
+    public static fileSystem(
+        folder: string,
+        lokiJsOptions: Omit<LokiJsOptions, "persistenceMethod">
+    ): LokiJsConnection {
+        return new LokiJsConnection(folder, this.defaultDatabaseFactory, { ...lokiJsOptions, persistenceMethod: "fs" });
+    }
+
+    public static localStorage(lokiJsOptions: Omit<LokiJsOptions, "persistenceMethod">): LokiJsConnection {
+        return new LokiJsConnection("", this.defaultDatabaseFactory, {
+            ...lokiJsOptions,
+            persistenceMethod: "localStorage"
+        });
+    }
+
+    public static inMemory(lokiJsOptions: Omit<LokiJsOptions, "persistenceMethod">): LokiJsConnection {
+        return new LokiJsConnection("", this.defaultDatabaseFactory, { ...lokiJsOptions, persistenceMethod: "memory" });
     }
 
     private onCollectionClosed(name: string) {
