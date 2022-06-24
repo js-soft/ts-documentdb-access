@@ -15,8 +15,8 @@ export class LokiJsConnection implements IDatabaseConnection {
 
     public constructor(
         private readonly folder: string,
-        private readonly databaseFactory: ILokiJsDatabaseFactory = LokiJsConnection.defaultDatabaseFactory,
-        private readonly lokiJsOptions: LokiJsOptions = {}
+        private readonly lokiJsOptions: LokiJsOptions = {},
+        private readonly databaseFactory: ILokiJsDatabaseFactory = LokiJsConnection.defaultDatabaseFactory
     ) {
         this.providers = new Map();
     }
