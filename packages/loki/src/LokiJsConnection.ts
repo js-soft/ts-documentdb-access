@@ -7,12 +7,7 @@ export class LokiJsConnection implements IDatabaseConnection {
     private readonly providers: Map<string, LokiJsCollectionProvider>;
 
     private static readonly defaultDatabaseFactory = {
-        create: (
-            filename: string,
-            options:
-                | (Partial<LokiConstructorOptions> & Partial<LokiConfigOptions> & Partial<ThrottledSaveDrainOptions>)
-                | undefined
-        ): Loki => {
+        create: (filename: string, options?: LokiJsOptions): Loki => {
             return new Lokijs(filename, options);
         }
     };
