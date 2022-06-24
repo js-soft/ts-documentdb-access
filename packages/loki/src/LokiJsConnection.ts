@@ -23,19 +23,19 @@ export class LokiJsConnection implements IDatabaseConnection {
 
     public static fileSystem(
         folder: string,
-        lokiJsOptions: Omit<LokiJsOptions, "persistenceMethod">
+        lokiJsOptions?: Omit<LokiJsOptions, "persistenceMethod">
     ): LokiJsConnection {
         return new LokiJsConnection(folder, this.defaultDatabaseFactory, { ...lokiJsOptions, persistenceMethod: "fs" });
     }
 
-    public static localStorage(lokiJsOptions: Omit<LokiJsOptions, "persistenceMethod">): LokiJsConnection {
+    public static localStorage(lokiJsOptions?: Omit<LokiJsOptions, "persistenceMethod">): LokiJsConnection {
         return new LokiJsConnection("", this.defaultDatabaseFactory, {
             ...lokiJsOptions,
             persistenceMethod: "localStorage"
         });
     }
 
-    public static inMemory(lokiJsOptions: Omit<LokiJsOptions, "persistenceMethod">): LokiJsConnection {
+    public static inMemory(lokiJsOptions?: Omit<LokiJsOptions, "persistenceMethod">): LokiJsConnection {
         return new LokiJsConnection("", this.defaultDatabaseFactory, { ...lokiJsOptions, persistenceMethod: "memory" });
     }
 
