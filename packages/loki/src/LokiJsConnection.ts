@@ -2,6 +2,7 @@ import { IDatabaseConnection } from "@js-soft/docdb-access-abstractions";
 import Lokijs from "lokijs";
 import { ILokiJsDatabaseFactory } from "./ILokiJsDatabaseFactory";
 import { LokiJsCollectionProvider } from "./LokiJsCollectionProvider";
+import { LokiJsOptions } from "./LokiJsOptions";
 
 export class LokiJsConnection implements IDatabaseConnection {
     private readonly providers: Map<string, LokiJsCollectionProvider>;
@@ -14,7 +15,8 @@ export class LokiJsConnection implements IDatabaseConnection {
 
     public constructor(
         private readonly folder: string,
-        private readonly databaseFactory: ILokiJsDatabaseFactory = LokiJsConnection.defaultDatabaseFactory
+        private readonly databaseFactory: ILokiJsDatabaseFactory = LokiJsConnection.defaultDatabaseFactory,
+        private readonly lokiJsOptions: LokiJsOptions = {}
     ) {
         this.providers = new Map();
     }
@@ -32,6 +34,7 @@ export class LokiJsConnection implements IDatabaseConnection {
         const that = this;
         return await new Promise((resolve) => {
             const db: Loki = this.databaseFactory.create(`${this.folder}/${name}.db`, {
+                ...this.lokiJsOptions,
                 autoload: true,
                 autosave: true,
                 autosaveInterval: 5000,
