@@ -19,8 +19,7 @@
         "build": "tsc",
         "test": "jest",
         "test:ci": "npm run test",
-        "test:local": "npm run test",
-        "license-check": "license-check"
+        "test:local": "npm run test"
     },
     "jest": {
         "preset": "ts-jest",
@@ -33,7 +32,6 @@
         "lokijs": "1.5.12"
     },
     "devDependencies": {
-        "@js-soft/license-check": "1.0.4",
         "@types/jest": "^28.1.3",
         "@types/node": "^18.0.0",
         "@types/qs": "^6.9.7",
