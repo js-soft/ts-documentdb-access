@@ -1,7 +1,8 @@
+import { describe, expect, test } from "@jest/globals";
 import { removeContainsInQuery } from "../src/queryUtils";
 
 describe("queryUtils", () => {
-    it("should replace the correct keys", () => {
+    test("should replace the correct keys", () => {
         expect(
             removeContainsInQuery({
                 key: { $contains: "a-string" }
@@ -25,7 +26,7 @@ describe("queryUtils", () => {
         });
     });
 
-    it("should accept undefined", () => {
+    test("should accept undefined", () => {
         expect(removeContainsInQuery(undefined)).toStrictEqual(undefined);
     });
 });

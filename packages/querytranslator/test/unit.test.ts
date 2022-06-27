@@ -1,3 +1,4 @@
+import { describe, expect, test } from "@jest/globals";
 import qs from "qs";
 import querystring from "querystring";
 import { QueryTranslator } from "../src";

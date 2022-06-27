@@ -13,6 +13,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
+      - run: npm install -g npm
       - run: bash .ci/build.sh
       - name: Start MongoDB
         uses: supercharge/mongodb-github-action@1.6.0
