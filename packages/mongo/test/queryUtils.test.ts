@@ -1,3 +1,4 @@
+import { describe, expect } from "@jest/globals";
 import { removeContainsInQuery } from "../src/queryUtils";
 
 describe("queryUtils", () => {

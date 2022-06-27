@@ -1,3 +1,4 @@
+import { afterAll, beforeAll, describe, expect, test } from "@jest/globals";
 import { LokiJsCollectionProvider, LokiJsConnection } from "../src";
 
 const connection = LokiJsConnection.inMemory();
