@@ -18,7 +18,7 @@ export class QueryTranslator {
     private readonly arrRegex: RegExp;
 
     public constructor(options: QueryTranslatorOptions = {}) {
-        this.ops = options.ops ?? ["!", "^", "$", "~", ">", "<", "$in"];
+        this.ops = options.ops ?? ["!", "^", "$", "~", ">", "<", "$containsAny", "$containsNone"];
         this.alias = options.alias ?? {};
         this.blacklist = options.blacklist ?? {};
         this.whitelist = options.whitelist ?? {};
@@ -57,7 +57,7 @@ export class QueryTranslator {
         switch (op) {
             case "!":
                 if (array) {
-                    ret.field = "$nin";
+                    ret.field = "$containsNone";
                 } else if (org === "") {
                     ret.field = "$exists";
                     ret.value = false;
@@ -95,7 +95,7 @@ export class QueryTranslator {
                 ret.value = this.parseStringVal(org);
 
                 if (array) {
-                    ret.field = "$in";
+                    ret.field = "$containsAny";
                 } else if (org === "") {
                     ret.field = "$exists";
                     ret.value = true;
@@ -172,7 +172,7 @@ export class QueryTranslator {
 
             // Handle array key
             if (Array.isArray(val)) {
-                if (this.ops.includes("$in") && val.length > 0) {
+                if (this.ops.includes("$containsAny") && val.length > 0) {
                     res[key] = {};
 
                     for (const item of val) {
@@ -180,8 +180,8 @@ export class QueryTranslator {
                             const parsed = this.parseString(item, true);
 
                             switch (parsed.field) {
-                                case "$in":
-                                case "$nin":
+                                case "$containsAny":
+                                case "$containsNone":
                                     res[key][parsed.field] = res[key][parsed.field] || [];
                                     res[key][parsed.field].push(parsed.value);
                                     break;
@@ -193,8 +193,8 @@ export class QueryTranslator {
                                     res[key][parsed.field] = parsed.value;
                             }
                         } else {
-                            res[key].$in = res[key].$in || [];
-                            res[key].$in.push(this.parseStringVal(item));
+                            res[key].$containsAny = res[key].$containsAny || [];
+                            res[key].$containsAny.push(this.parseStringVal(item));
                         }
                     }
                 }

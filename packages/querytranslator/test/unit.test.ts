@@ -135,22 +135,22 @@ describe("parseString()", () => {
     const dbqs = new QueryTranslator({
         keyRegex: /^[a-zæøå0-9-_.]+$/i
     });
-    test('returns $nin for "!" operator when array is true', () => {
+    test('returns $containsNone for "!" operator when array is true', () => {
         expect(dbqs.parseString("!10", true)).toStrictEqual({
-            field: "$nin",
+            field: "$containsNone",
             op: "!",
             org: "10",
-            parsed: { $nin: 10 },
+            parsed: { containsNone: 10 },
             value: 10
         });
     });
 
-    test('returns $in for "" operator when array is true', () => {
+    test('returns containsAny for "" operator when array is true', () => {
         expect(dbqs.parseString("10", true)).toStrictEqual({
-            field: "$in",
+            field: "containsAny",
             op: "",
             org: "10",
-            parsed: { $in: 10 },
+            parsed: { containsAny: 10 },
             value: 10
         });
     });
@@ -552,14 +552,14 @@ describe("parse()", () => {
             });
         });
 
-        describe("$in / $nin operator", () => {
+        describe("containsAny / containsNone operator", () => {
             test("returns in array query", () => {
                 const string = "foo[]=10&foo[]=10.011&foo[]=bar&foo[]=true";
                 const params = querystring.parse(string);
 
                 expect(dbqs.parse(params)).toStrictEqual({
                     foo: {
-                        $in: [10, 10.011, "bar", true]
+                        containsAny: [10, 10.011, "bar", true]
                     }
                 });
             });
@@ -570,7 +570,7 @@ describe("parse()", () => {
 
                 expect(dbqs.parse(params)).toStrictEqual({
                     foo: {
-                        $in: [10, 10.011, "bar", true]
+                        containsAny: [10, 10.011, "bar", true]
                     }
                 });
             });
@@ -581,8 +581,8 @@ describe("parse()", () => {
 
                 expect(dbqs.parse(params)).toStrictEqual({
                     foo: {
-                        $in: [10, "baz"],
-                        $nin: [10.011, "bar"]
+                        containsAny: [10, "baz"],
+                        containsNone: [10.011, "bar"]
                     }
                 });
             });
@@ -593,7 +593,7 @@ describe("parse()", () => {
 
                 expect(dbqs.parse(params)).toStrictEqual({
                     foo: {
-                        $nin: [10, 10.011, "bar", false]
+                        containsNone: [10, 10.011, "bar", false]
                     }
                 });
             });
@@ -604,7 +604,7 @@ describe("parse()", () => {
 
                 expect(dbqs.parse(params)).toStrictEqual({
                     foo: {
-                        $nin: [10, 10.011, "bar", false]
+                        containsNone: [10, 10.011, "bar", false]
                     }
                 });
             });
@@ -615,8 +615,8 @@ describe("parse()", () => {
 
                 expect(dbqs.parse(params)).toStrictEqual({
                     foo: {
-                        $nin: [10, "baz"],
-                        $in: [10.011, "bar"]
+                        containsNone: [10, "baz"],
+                        containsAny: [10.011, "bar"]
                     }
                 });
             });
