@@ -7,8 +7,9 @@ export function removeContainsInQuery(query?: any): any {
         const value = query[key];
 
         const valueIsObject = typeof value === "object";
+        const valueIsArray = Array.isArray(value);
 
-        if (valueIsObject) {
+        if (valueIsObject && !valueIsArray) {
             query[key] = removeContainsInQuery(value);
             continue;
         }
