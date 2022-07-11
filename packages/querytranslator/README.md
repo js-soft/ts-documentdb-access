@@ -172,9 +172,13 @@ mongo
 
 ### known incompatibilities
 
--   matching objects in an array (e.g. `{ "an-array": ["a-string"] }` requires `{"an-array": "a-string"}` for MongoDB and `{"an-array": {"$contains": "a-string"}}` for LokiJS)
+-   matching objects in an array (e.g. `{ "an-array": ["a-string"] }` requires `{"an-array": "a-string"}` (if you want to search for a single string) or `{"an-array": {"$in": ["string-1", "string-2"]}` (if you want to search for one of multiple strings) for MongoDB and `{"an-array": {"$contains": "a-string"}}` (if you want to search for a single string) or `{"an-array": {"$containsAny": ["string-1", "string-2]}}` (if you want to search for one of multiple strings) for LokiJS)
 
-    The mongodb parser therefore will accept `$contains` and rewrite `{"an-array": {"$contains": "a-string"}}` to `{"an-array": "a-string"}`
+    The mongodb parser therefore will
+
+    -   accept `$contains` and rewrite `{"an-array": {"$contains": "a-string"}}` to `{"an-array": "a-string"}`
+    -   accept `$containsAny` and rewrite `{"an-array": {"$containsAny": ["string-1", "string-2]}}` to `{"an-array": {"$in": ["string-1", "string-2]}}`
+    -   accept `$containsNone` and rewrite `{"an-array": {"$containsNone": ["string-1", "string-2]}}` to `{"an-array": {"$nin": ["string-1", "string-2]}}`
 
 ### LokiJs Operators
 
