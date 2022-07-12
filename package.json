@@ -9,11 +9,12 @@
     ],
     "scripts": {
         "build": "npm run build --workspaces",
+        "build:watch": "tsc -b -w packages/*",
         "lint": "npm run lint:prettier && npm run lint:eslint && npm run lint:tsc",
         "lint:eslint": "eslint --ext .ts ./packages/*/src ./packages/*/test",
         "lint:prettier": "prettier --check .",
         "lint:tsc": "npm run build --workspaces",
-        "test:local": "npm run test:local --workspaces"
+        "test:local": "npm run test:local --workspaces --if-present"
     },
     "devDependencies": {
         "@js-soft/eslint-config-ts": "1.5.2",
