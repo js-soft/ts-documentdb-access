@@ -7,17 +7,26 @@ export function removeContainsInQuery(query?: any): any {
         const value = query[key];
 
         const valueIsObject = typeof value === "object";
-        const keyIsContains = key === "$contains";
+        const valueIsArray = Array.isArray(value);
 
-        if (!valueIsObject && keyIsContains) {
+        if (valueIsObject && !valueIsArray) {
+            query[key] = removeContainsInQuery(value);
+            continue;
+        }
+
+        if (key === "$contains") {
             return value;
         }
 
-        if (!valueIsObject) {
-            return query;
+        if (key === "$containsAny") {
+            return { $in: value };
         }
 
-        query[key] = removeContainsInQuery(value);
+        if (key === "$containsNone") {
+            return { $nin: value };
+        }
+
+        return query;
     }
 
     return query;
