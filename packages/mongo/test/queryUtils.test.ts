@@ -48,6 +48,36 @@ describe("queryUtils", () => {
                 key3: { $eq: "a-string" }
             }
         });
+
+        expect(
+            removeContainsInQuery({
+                $or: [
+                    {
+                        key1: {
+                            $containsAny: ["string-1", "string-2"]
+                        }
+                    },
+                    {
+                        key2: {
+                            $containsAny: ["string-1", "string-2"]
+                        }
+                    }
+                ]
+            })
+        ).toStrictEqual({
+            $or: [
+                {
+                    key1: {
+                        $in: ["string-1", "string-2"]
+                    }
+                },
+                {
+                    key2: {
+                        $in: ["string-1", "string-2"]
+                    }
+                }
+            ]
+        });
     });
 
     test("replaces $containsNone with $nin", () => {
