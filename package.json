@@ -9,6 +9,7 @@
     ],
     "scripts": {
         "build": "npm run build --workspaces",
+        "build:watch": "tsc -b -w packages/*",
         "lint": "npm run lint:prettier && npm run lint:eslint && npm run lint:tsc",
         "lint:eslint": "eslint --ext .ts ./packages/*/src ./packages/*/test",
         "lint:prettier": "prettier --check .",
