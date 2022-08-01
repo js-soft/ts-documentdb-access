@@ -4,10 +4,12 @@
 
 This monorepo consolidates the following packages dealing with databases:
 
--   [Database Abstractions](packages/abstractions/)
--   [LokiJS Database Wrapper](packages/loki/)
--   [MongoDB Database Wrapper](packages/mongo/)
--   [Database QueryTranslator](packages/querytranslator/)
+| Package                                               | Version                                                                                                                                           |
+| :---------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Database Abstractions](packages/abstractions/)       | [![version](https://badge.fury.io/js/@js-soft%2fdocdb-access-abstractions.svg)](https://www.npmjs.com/package/@js-soft/docdb-access-abstractions) |
+| [LokiJS Database Wrapper](packages/loki/)             | [![version](https://badge.fury.io/js/@js-soft%2fdocdb-access-loki.svg)](https://www.npmjs.com/package/@js-soft/docdb-access-loki)                 |
+| [MongoDB Database Wrapper](packages/mongo/)           | [![version](https://badge.fury.io/js/@js-soft%2fdocdb-access-mongo.svg)](https://www.npmjs.com/package/@js-soft/docdb-access-mongo)               |
+| [Database QueryTranslator](packages/querytranslator/) | [![version](https://badge.fury.io/js/@js-soft%2fdocdb-querytranslator.svg)](https://www.npmjs.com/package/@js-soft/docdb-querytranslator)         |
 
 ## Documentation
 
