@@ -288,6 +288,7 @@ describe("parse()", () => {
             test("discards keys with special chars", () => {
                 expect(
                     dbqs.parse({
+                        // eslint-disable-next-line @typescript-eslint/naming-convention
                         h4xor$: "bix"
                     })
                 ).toStrictEqual({});
@@ -633,7 +634,6 @@ describe("parse()", () => {
                 bar: { $exists: false },
                 baz: { $ne: "foo" },
                 bix: "bez",
-                // eslint-disable-next-line @typescript-eslint/naming-convention
                 "bix.bax": "that",
                 // eslint-disable-next-line @typescript-eslint/naming-convention
                 "foo-bar": "bar-foo"
