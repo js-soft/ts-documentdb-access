@@ -26,6 +26,17 @@ describe("queryUtils", () => {
         });
     });
 
+    test("$contains with addtional properties throws", () => {
+        expect(() =>
+            removeContainsInQuery({
+                aKey: {
+                    $contains: "a-string",
+                    $eq: "a-string"
+                }
+            })
+        ).toThrowError("Unsupported query: an object with $contains must not have additional properties");
+    });
+
     test("replaces $containsAny with $in", () => {
         expect(
             removeContainsInQuery({
@@ -77,6 +88,24 @@ describe("queryUtils", () => {
                     }
                 }
             ]
+        });
+
+        expect(
+            removeContainsInQuery({
+                anotherProp: "propValue",
+                status: { $containsAny: ["A", "B"] }
+            })
+        ).toStrictEqual({
+            anotherProp: "propValue",
+            status: { $in: ["A", "B"] }
+        });
+
+        expect(
+            removeContainsInQuery({
+                status: { $containsNone: ["A", "B"], $containsAny: ["C", "D"] }
+            })
+        ).toStrictEqual({
+            status: { $nin: ["A", "B"], $in: ["C", "D"] }
         });
     });
 

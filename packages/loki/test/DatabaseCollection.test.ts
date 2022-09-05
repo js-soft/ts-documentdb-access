@@ -62,7 +62,6 @@ describe("DatabaseCollection", () => {
         const all = await db.list();
         expect(all).toHaveLength(10);
 
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         const queriedList = await db.find({ "obj.count": { $gt: 5 }, x: true });
         expect(queriedList).toHaveLength(3);
     });
