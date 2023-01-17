@@ -2,7 +2,7 @@ import { QueryTranslatorOptions } from "./QueryTranslatorOptions";
 import { StringOperations } from "./StringOperations";
 
 export class QueryTranslator {
-    private static defaultKeyRegex = /^[a-zA-Za-zA-Z_@][a-zA-Z@0-9-_]*(\.[a-zA-Z_@][a-zA-Z@0-9-_]*)*$/;
+    private static defaultKeyRegex = /^[a-zA-Z_@][a-zA-Z@0-9-_]*(\.[a-zA-Z_@][a-zA-Z@0-9-_]*)*$/;
     private static defaultValRegex?: RegExp = undefined;
     private static defaultArrRegex = /^[a-zA-Zæøå0-9-_.]+(\[])?$/i;
 
