@@ -74,7 +74,7 @@ import { QueryTranslator } from "@js-soft/docdb-querytranslator";
 -   `object` string - string parsing
     -   `boolean` toBoolean - parse `"true"`, `"false"` string to booleans (default: `true`)
     -   `boolean` toNumber - parse string integer and float values to numbers (default: `true`)
--   `regexp` keyRegex - allowed key names (default: `/^[A-z_@][A-z@0-9-_]*(\.[A-z_@][A-z@0-9-_]*)*$/`)
+-   `regexp` keyRegex - allowed key names (default: `/^[a-zA-Z_@][a-zA-Z@0-9-_]*(\.[a-zA-Z_@][a-zA-Z@0-9-_]*)*$/`)
 -   `regexp` arrRegex - allowed array key names (default: `/^[a-zæøå0-9-_.]+(\[\])?$/i`)
 
 #### Define custom queries

@@ -2,9 +2,9 @@ import { QueryTranslatorOptions } from "./QueryTranslatorOptions";
 import { StringOperations } from "./StringOperations";
 
 export class QueryTranslator {
-    private static defaultKeyRegex = /^[A-z_@][A-z@0-9-_]*(\.[A-z_@][A-z@0-9-_]*)*$/;
+    private static defaultKeyRegex = /^[a-zA-Z_@][a-zA-Z@0-9-_]*(\.[a-zA-Z_@][a-zA-Z@0-9-_]*)*$/;
     private static defaultValRegex?: RegExp = undefined;
-    private static defaultArrRegex = /^[a-zæøå0-9-_.]+(\[])?$/i;
+    private static defaultArrRegex = /^[a-zA-Zæøå0-9-_.]+(\[])?$/i;
 
     private readonly ops: string[];
     private readonly alias: any;
@@ -134,6 +134,10 @@ export class QueryTranslator {
         const res: any = {};
 
         for (let key of Object.keys(query)) {
+            // if the key is __proto__ it could cause a prototype-polluting assignment
+            // see https://codeql.github.com/codeql-query-help/javascript/js-prototype-polluting-assignment/ for more information
+            if (key === "__proto__") continue;
+
             const val = query[key];
 
             // Normalize array keys
