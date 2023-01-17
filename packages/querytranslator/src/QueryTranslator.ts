@@ -186,7 +186,7 @@ export class QueryTranslator {
                             switch (parsed.field) {
                                 case "$containsAny":
                                 case "$containsNone":
-                                    res[key][parsed.field] ??= [];
+                                    res[key][parsed.field] = res[key][parsed.field] || [];
                                     res[key][parsed.field].push(parsed.value);
                                     break;
                                 case "$regex":
@@ -197,7 +197,7 @@ export class QueryTranslator {
                                     res[key][parsed.field] = parsed.value;
                             }
                         } else {
-                            res[key].$containsAny ??= [];
+                            res[key].$containsAny = res[key].$containsAny || [];
                             res[key].$containsAny.push(this.parseStringVal(item));
                         }
                     }
