@@ -134,6 +134,10 @@ export class QueryTranslator {
         const res: any = {};
 
         for (let key of Object.keys(query)) {
+            // if the key is __proto__ it could cause a prototype-polluting assignment
+            // see https://codeql.github.com/codeql-query-help/javascript/js-prototype-polluting-assignment/ for more information
+            if (key === "__proto__") continue;
+
             const val = query[key];
 
             // Normalize array keys
@@ -182,7 +186,7 @@ export class QueryTranslator {
                             switch (parsed.field) {
                                 case "$containsAny":
                                 case "$containsNone":
-                                    res[key][parsed.field] = res[key][parsed.field] || [];
+                                    res[key][parsed.field] ??= [];
                                     res[key][parsed.field].push(parsed.value);
                                     break;
                                 case "$regex":
@@ -193,7 +197,7 @@ export class QueryTranslator {
                                     res[key][parsed.field] = parsed.value;
                             }
                         } else {
-                            res[key].$containsAny = res[key].$containsAny || [];
+                            res[key].$containsAny ??= [];
                             res[key].$containsAny.push(this.parseStringVal(item));
                         }
                     }
