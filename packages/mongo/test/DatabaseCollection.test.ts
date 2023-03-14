@@ -4,14 +4,18 @@ import { MongoDbCollectionProvider, MongoDbConnection } from "../src";
 const connection = new MongoDbConnection(process.env.CONNECTION_STRING!);
 let database: MongoDbCollectionProvider;
 
+function randomString() {
+    return `x${Math.random().toString(36).substring(7)}`;
+}
+
 beforeAll(async () => {
     await connection.connect();
-    database = await connection.getDatabase(Math.random().toString(36).substring(7));
+    database = await connection.getDatabase(randomString());
 });
 afterAll(async () => await connection.close());
 
 async function getRandomCollection() {
-    return await database.getCollection(Math.random().toString(36).substring(7));
+    return await database.getCollection(randomString());
 }
 
 describe("DatabaseCollection", () => {
