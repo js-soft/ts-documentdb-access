@@ -1,2 +1,3 @@
 BASEDIR=$(dirname "$0")
-docker-compose -f $BASEDIR/docker-compose.yml up -d mongo
+
+docker compose -p database-tests -f $BASEDIR/docker-compose.yml up -d mongo
