@@ -4,3 +4,24 @@ services:
     image: mongo
     ports:
       - 27020:27017
+
+  postgres:
+    image: postgres
+    container_name: database-ferretdb-postgres
+    hostname: postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=ferretdb
+
+  ferret:
+    image: ghcr.io/ferretdb/ferretdb:latest
+    container_name: database-ferretdb
+    ports:
+      - "27024:27017"
+    environment:
+      FERRETDB_POSTGRESQL_URL: postgres://user:password@postgres:5432/ferretdb
+      FERRETDB_TELEMETRY: disable
+      FERRETDB_LOG_LEVEL: error
+    depends_on:
+      - postgres

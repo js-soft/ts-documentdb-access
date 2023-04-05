@@ -19,7 +19,8 @@
         "build": "tsc",
         "test": "jest",
         "test:ci": "npm run test",
-        "test:local": "../../.local/testSetup.sh && CONNECTION_STRING=\"mongodb://127.0.0.1:27020/?readPreference=primary&appname=Core&ssl=false\" npm run test"
+        "test:local": "../../.local/testSetup.sh && CONNECTION_STRING=\"mongodb://localhost:27020\" npm run test",
+        "test:local:ferretdb": "../../.local/testSetupFerret.sh && CONNECTION_STRING=\"mongodb://localhost:27024\" npm run test"
     },
     "jest": {
         "preset": "ts-jest",

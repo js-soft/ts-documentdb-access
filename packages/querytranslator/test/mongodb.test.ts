@@ -7,7 +7,7 @@ const testRunner = new TestRunner();
 
 beforeAll(async () => {
     await connection.connect();
-    const db = await connection.getDatabase(Math.random().toString(36).substring(7));
+    const db = await connection.getDatabase(`x${Math.random().toString(36).substring(7)}`);
     await testRunner.init(db);
 });
 

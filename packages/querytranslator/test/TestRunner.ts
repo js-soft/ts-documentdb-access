@@ -23,7 +23,7 @@ export class TestRunner {
     }
 
     private randomString() {
-        return Math.random().toString(36).substring(7);
+        return `x${Math.random().toString(36).substring(7)}`;
     }
 
     public async init(provider: IDatabaseCollectionProvider): Promise<void> {

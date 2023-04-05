@@ -18,8 +18,9 @@
     "scripts": {
         "build": "tsc",
         "test:ci": "jest",
-        "test:local": "../../.local/testSetup.sh && CONNECTION_STRING=\"mongodb://127.0.0.1:27020/?readPreference=primary&appname=Core&ssl=false\" jest",
-        "test:watch": "../../.local/testSetup.sh && CONNECTION_STRING=\"mongodb://127.0.0.1:27020/?readPreference=primary&appname=Core&ssl=false\" jest --watch"
+        "test:local": "../../.local/testSetup.sh && CONNECTION_STRING=\"mongodb://127.0.0.1:27020\" jest",
+        "test:local:ferretdb": "../../.local/testSetupFerret.sh && CONNECTION_STRING=\"mongodb://127.0.0.1:27024\" jest",
+        "test:watch": "../../.local/testSetup.sh && CONNECTION_STRING=\"mongodb://127.0.0.1:27020\" jest --watch"
     },
     "jest": {
         "preset": "ts-jest",
