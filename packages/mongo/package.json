@@ -29,7 +29,7 @@
     },
     "dependencies": {
         "@js-soft/docdb-access-abstractions": "1.0.1",
-        "mongodb": "4.13.0"
+        "mongodb": "6.0.0"
     },
     "devDependencies": {},
     "publishConfig": {
