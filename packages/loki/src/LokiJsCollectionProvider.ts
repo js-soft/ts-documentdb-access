@@ -3,7 +3,10 @@ import { LokiJsCollection } from "./LokiJsCollection";
 import { LokiJsMap } from "./LokiJsMap";
 
 export class LokiJsCollectionProvider implements IDatabaseCollectionProvider {
-    public constructor(private readonly db: Loki, private readonly onClosed: Function) {}
+    public constructor(
+        private readonly db: Loki,
+        private readonly onClosed: Function
+    ) {}
 
     private getLokidbCollection(name: string) {
         let collection = this.db.getCollection(name);
