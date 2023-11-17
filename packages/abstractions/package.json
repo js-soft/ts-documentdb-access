@@ -18,7 +18,6 @@
     "scripts": {
         "build": "tsc"
     },
-    "devDependencies": {},
     "publishConfig": {
         "access": "public",
         "provenance": true

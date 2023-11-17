@@ -31,7 +31,6 @@
         "@types/lokijs": "1.5.12",
         "lokijs": "1.5.12"
     },
-    "devDependencies": {},
     "publishConfig": {
         "access": "public",
         "provenance": true
