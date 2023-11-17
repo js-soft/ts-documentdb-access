@@ -32,7 +32,7 @@
         "@js-soft/docdb-access-loki": "*",
         "@js-soft/docdb-access-mongo": "*",
         "qs": "^6.11.2",
-        "@types/qs": "^6.9.8"
+        "@types/qs": "^6.9.10"
     },
     "publishConfig": {
         "access": "public"

@@ -28,7 +28,7 @@
     },
     "dependencies": {
         "@js-soft/docdb-access-abstractions": "1.0.1",
-        "@types/lokijs": "1.5.10",
+        "@types/lokijs": "1.5.12",
         "lokijs": "1.5.12"
     },
     "devDependencies": {},
