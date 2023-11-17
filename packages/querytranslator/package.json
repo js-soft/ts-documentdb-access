@@ -1,6 +1,6 @@
 {
     "name": "@js-soft/docdb-querytranslator",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "Parse and pass URL queries to MongoDB and LokiJS query",
     "homepage": "https://github.com/js-soft/ts-documentdb-access#readme",
     "repository": {
