@@ -120,55 +120,55 @@ mongo
 
 ### compatibility
 
-|    Operator    | MongoDb | LokiJs |
-| :------------: | :-----: | :----: |
-|      $eq       |    X    |   X    |
-|      $gt       |    X    |   X    |
-|      $gte      |    X    |   X    |
-|      $in       |    X    |   X    |
-|      $lt       |    X    |   X    |
-|      $lte      |    X    |   X    |
-|      $ne       |    X    |   X    |
-|      $nin      |    X    |   X    |
-|      $and      |    X    |   X    |
-|      $not      |    X    |        |
-|      $nor      |    X    |        |
-|      $or       |    X    |   X    |
-|    $exists     |    X    |   X    |
-|     $type      |    X    |   X    |
-|     $expr      |    X    |        |
-|  $jsonSchema   |    X    |        |
-|      $mod      |    X    |        |
-|     $regex     |    X    |   X    |
-|     $text      |    X    |        |
-|     $where     |    X    |        |
-| $geoIntersects |    X    |        |
-|   $geoWithin   |    X    |        |
-|     $near      |    X    |        |
-|     $nearS     |    X    |        |
-|      $all      |    X    |        |
-|   $elemMatch   |    X    |        |
-|     $size      |    X    |   X    |
-| $bitsAllClear  |    X    |        |
-|  $bitsAllSet   |    X    |        |
-| $bitsAnyClear  |    X    |        |
-|  $bitsAnySet   |    X    |        |
-|      $aeq      |         |   X    |
-|     $dteq      |         |   X    |
-|    $between    |         |   X    |
-|     $jgte      |         |   X    |
-|      $jlt      |         |   X    |
-|     $jlte      |         |   X    |
-|   $jbetween    |         |   X    |
-|     $keyin     |         |   X    |
-|    $nkeyin     |         |   X    |
-|   $definedin   |         |   X    |
-|  $undefinedin  |         |   X    |
-|   $contains    |         |   X    |
-|  $containsAny  |         |   X    |
-| $containsNone  |         |   X    |
-|    $finite     |         |   X    |
-|      $len      |         |   X    |
+|    Operator    |                             MongoDb                              | LokiJs |
+| :------------: | :--------------------------------------------------------------: | :----: |
+|      $eq       |                                X                                 |   X    |
+|      $gt       |                                X                                 |   X    |
+|      $gte      |                                X                                 |   X    |
+|      $in       |                                X                                 |   X    |
+|      $lt       |                                X                                 |   X    |
+|      $lte      |                                X                                 |   X    |
+|      $ne       |                                X                                 |   X    |
+|      $nin      |                                X                                 |   X    |
+|      $and      |                                X                                 |   X    |
+|      $not      |                                X                                 |        |
+|      $nor      |                                X                                 |        |
+|      $or       |                                X                                 |   X    |
+|    $exists     |                                X                                 |   X    |
+|     $type      |                                X                                 |   X    |
+|     $expr      |                                X                                 |        |
+|  $jsonSchema   |                                X                                 |        |
+|      $mod      |                                X                                 |        |
+|     $regex     |                                X                                 |   X    |
+|     $text      |                                X                                 |        |
+|     $where     |                                X                                 |        |
+| $geoIntersects |                                X                                 |        |
+|   $geoWithin   |                                X                                 |        |
+|     $near      |                                X                                 |        |
+|     $nearS     |                                X                                 |        |
+|      $all      |                                X                                 |        |
+|   $elemMatch   |                                X                                 |        |
+|     $size      |                                X                                 |   X    |
+| $bitsAllClear  |                                X                                 |        |
+|  $bitsAllSet   |                                X                                 |        |
+| $bitsAnyClear  |                                X                                 |        |
+|  $bitsAnySet   |                                X                                 |        |
+|      $aeq      |                                                                  |   X    |
+|     $dteq      |                                                                  |   X    |
+|    $between    |                                                                  |   X    |
+|     $jgte      |                                                                  |   X    |
+|      $jlt      |                                                                  |   X    |
+|     $jlte      |                                                                  |   X    |
+|   $jbetween    |                                                                  |   X    |
+|     $keyin     |                                                                  |   X    |
+|    $nkeyin     |                                                                  |   X    |
+|   $definedin   |                                                                  |   X    |
+|  $undefinedin  |                                                                  |   X    |
+|   $contains    | X ([supported by our mongodb library](#known-incompatibilities)) |   X    |
+|  $containsAny  | X ([supported by our mongodb library](#known-incompatibilities)) |   X    |
+| $containsNone  | X ([supported by our mongodb library](#known-incompatibilities)) |   X    |
+|    $finite     |                                                                  |   X    |
+|      $len      |                                                                  |   X    |
 
 ### known incompatibilities
 
