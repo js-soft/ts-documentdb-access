@@ -1,5 +1,5 @@
 import { IDatabaseConnection } from "@js-soft/docdb-access-abstractions";
-import Lokijs from "lokijs";
+import lokijs from "lokijs";
 import { ILokiJsDatabaseFactory } from "./ILokiJsDatabaseFactory";
 import { LokiJsCollectionProvider } from "./LokiJsCollectionProvider";
 import { LokiJsOptions } from "./LokiJsOptions";
@@ -9,7 +9,7 @@ export class LokiJsConnection implements IDatabaseConnection {
 
     private static readonly defaultDatabaseFactory = {
         create: (filename: string, options?: LokiJsOptions): Loki => {
-            return new Lokijs(filename, options);
+            return new lokijs(filename, options);
         }
     };
 
