@@ -164,9 +164,9 @@ mongo
 |    $nkeyin     |                                                                  |   X    |
 |   $definedin   |                                                                  |   X    |
 |  $undefinedin  |                                                                  |   X    |
-|   $contains    | X ([supported by our database layers](#known-incompatibilities)) |   X    |
-|  $containsAny  | X ([supported by our database layers](#known-incompatibilities)) |   X    |
-| $containsNone  | X ([supported by our database layers](#known-incompatibilities)) |   X    |
+|   $contains    | X ([supported by our mongodb library](#known-incompatibilities)) |   X    |
+|  $containsAny  | X ([supported by our mongodb library](#known-incompatibilities)) |   X    |
+| $containsNone  | X ([supported by our mongodb library](#known-incompatibilities)) |   X    |
 |    $finite     |                                                                  |   X    |
 |      $len      |                                                                  |   X    |
 
