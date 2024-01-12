@@ -1,6 +1,6 @@
 {
     "name": "@js-soft/docdb-access-loki",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "The LokiJS implementation for the '@js-soft/@js-soft/docdb-access-abstractions' library.",
     "homepage": "https://github.com/js-soft/ts-documentdb-access#readme",
     "repository": {
@@ -27,7 +27,7 @@
         "testTimeout": 60000
     },
     "dependencies": {
-        "@js-soft/docdb-access-abstractions": "1.0.2",
+        "@js-soft/docdb-access-abstractions": "1.0.3",
         "@types/lokijs": "1.5.14",
         "lokijs": "1.5.12"
     },

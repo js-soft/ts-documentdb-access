@@ -1,6 +1,6 @@
 {
     "name": "@js-soft/docdb-access-abstractions",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Database abstractions.",
     "homepage": "https://github.com/js-soft/ts-documentdb-access#readme",
     "repository": {
