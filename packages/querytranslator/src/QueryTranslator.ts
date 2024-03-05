@@ -4,7 +4,7 @@ import { StringOperations } from "./StringOperations";
 export class QueryTranslator {
     private static defaultKeyRegex = /^[a-zA-Z_@][a-zA-Z@0-9-_]*(\.[a-zA-Z_@][a-zA-Z@0-9-_]*)*$/;
     private static defaultValRegex?: RegExp = undefined;
-    private static defaultArrRegex = /^[a-zA-Zæøå0-9-_.]+(\[])?$/i;
+    private static defaultArrRegex = /^[a-zA-Z@æøå0-9-_.]+(\[])?$/i;
 
     private readonly ops: string[];
     private readonly alias: any;
