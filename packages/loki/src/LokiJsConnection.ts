@@ -43,6 +43,16 @@ export class LokiJsConnection implements IDatabaseConnection {
         this.providers.delete(name);
     }
 
+    public async deleteDatabase(name: string): Promise<void> {
+        const database = await this.getDatabase(name);
+
+        const loki = database["db"];
+
+        await new Promise((resolve) => loki.deleteDatabase(resolve));
+
+        this.providers.delete(name);
+    }
+
     public async getDatabase(name: string): Promise<LokiJsCollectionProvider> {
         const givenProvider = this.providers.get(name);
         if (givenProvider) {
