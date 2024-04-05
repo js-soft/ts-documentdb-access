@@ -31,8 +31,8 @@
         "@js-soft/docdb-access-abstractions": "*",
         "@js-soft/docdb-access-loki": "*",
         "@js-soft/docdb-access-mongo": "*",
-        "qs": "^6.11.2",
-        "@types/qs": "^6.9.10"
+        "qs": "^6.12.0",
+        "@types/qs": "^6.9.14"
     },
     "publishConfig": {
         "access": "public",
