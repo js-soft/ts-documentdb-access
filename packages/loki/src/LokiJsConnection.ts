@@ -48,7 +48,13 @@ export class LokiJsConnection implements IDatabaseConnection {
 
         const loki = database["db"];
 
-        await new Promise((resolve) => loki.deleteDatabase(resolve));
+        await new Promise<void>((resolve, reject) =>
+            loki.deleteDatabase((err) => {
+                if (err) reject(err);
+
+                resolve();
+            })
+        );
 
         this.providers.delete(name);
     }
