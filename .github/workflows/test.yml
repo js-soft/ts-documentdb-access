@@ -16,8 +16,8 @@ jobs:
       - run: npm install -g npm
       - run: bash .ci/build.sh
       - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.6.0
-      - uses: js-soft/ferretdb-github-action@1.0.2
+        uses: supercharge/mongodb-github-action@1.10.0
+      - uses: js-soft/ferretdb-github-action@1.1.1
         with:
           ferretdb-telemetry: "enabled"
           ferretdb-port: 27018
