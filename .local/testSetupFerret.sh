@@ -1,3 +1,3 @@
 BASEDIR=$(dirname "$0")
 
-docker compose -p database-tests -f $BASEDIR/docker-compose.yml up -d ferret
+docker compose -p database-tests -f $BASEDIR/compose.yml up -d ferret
