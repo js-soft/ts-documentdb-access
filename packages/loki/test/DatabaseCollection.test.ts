@@ -159,4 +159,60 @@ describe("DatabaseCollection", () => {
         expect(find1[0].id).not.toEqual(find2[0].id);
         expect(find1[0].value).not.toEqual(find2[0].value);
     });
+
+    test("should sort ascending", async () => {
+        const db = await getRandomCollection();
+
+        await db.create({ id: "id1", value: "1" });
+        await db.create({ id: "id2", value: "2" });
+
+        const find = await db.find(undefined, undefined, { sortBy: "value", sortOrder: "asc" });
+        expect(find).toHaveLength(2);
+
+        expect(find[0].id).toEqual("id1");
+        expect(find[1].id).toEqual("id2");
+    });
+
+    test("should sort descending", async () => {
+        const db = await getRandomCollection();
+
+        await db.create({ id: "id1", value: "1" });
+        await db.create({ id: "id2", value: "2" });
+
+        const find = await db.find(undefined, undefined, { sortBy: "value", sortOrder: "desc" });
+        expect(find).toHaveLength(2);
+
+        expect(find[0].id).toEqual("id2");
+        expect(find[1].id).toEqual("id1");
+    });
+
+    test("should query with paging and sorting ascending", async () => {
+        const db = await getRandomCollection();
+
+        await db.create({ id: "id1", value: "1" });
+        await db.create({ id: "id2", value: "2" });
+
+        const find1 = await db.find(undefined, { skip: 0, limit: 1 }, { sortBy: "value", sortOrder: "asc" });
+        expect(find1).toHaveLength(1);
+        expect(find1[0].id).toEqual("id1");
+
+        const find2 = await db.find(undefined, { skip: 1, limit: 1 }, { sortBy: "value", sortOrder: "asc" });
+        expect(find2).toHaveLength(1);
+        expect(find2[0].id).toEqual("id2");
+    });
+
+    test("should query with paging and sorting descending", async () => {
+        const db = await getRandomCollection();
+
+        await db.create({ id: "id1", value: "1" });
+        await db.create({ id: "id2", value: "2" });
+
+        const find1 = await db.find(undefined, { skip: 0, limit: 1 }, { sortBy: "value", sortOrder: "desc" });
+        expect(find1).toHaveLength(1);
+        expect(find1[0].id).toEqual("id2");
+
+        const find2 = await db.find(undefined, { skip: 1, limit: 1 }, { sortBy: "value", sortOrder: "desc" });
+        expect(find2).toHaveLength(1);
+        expect(find2[0].id).toEqual("id1");
+    });
 });
