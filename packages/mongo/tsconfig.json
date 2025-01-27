@@ -16,7 +16,6 @@
         "noImplicitReturns": true,
         "strictNullChecks": true,
         "lib": ["esnext", "dom"],
-        "typeRoots": ["./node_modules/@types"],
         "baseUrl": ""
     },
     "include": ["src/**/*.ts"]

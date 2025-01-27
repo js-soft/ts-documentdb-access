@@ -1,4 +1,9 @@
-import { DatabasePaginationOptions, DatabaseType, IDatabaseCollection } from "@js-soft/docdb-access-abstractions";
+import {
+    DatabasePaginationOptions,
+    DatabaseSortOptions,
+    DatabaseType,
+    IDatabaseCollection
+} from "@js-soft/docdb-access-abstractions";
 import { Collection } from "mongodb";
 import { removeContainsInQuery } from "./queryUtils";
 
@@ -58,8 +63,16 @@ export class MongoDbCollection implements IDatabaseCollection {
         return await this.collection.find({}).toArray();
     }
 
-    public async find(query?: any, paginationOptions?: DatabasePaginationOptions): Promise<any> {
+    public async find(
+        query?: any,
+        paginationOptions?: DatabasePaginationOptions,
+        sortOptions?: DatabaseSortOptions
+    ): Promise<any> {
         let cursor = this.collection.find(removeContainsInQuery(query));
+
+        if (sortOptions) {
+            cursor = cursor.sort(sortOptions.sortBy, sortOptions.sortOrder === "asc" ? 1 : -1);
+        }
 
         if (paginationOptions) {
             if (paginationOptions.skip) cursor = cursor.skip(paginationOptions.skip);

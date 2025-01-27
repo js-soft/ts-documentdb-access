@@ -6,22 +6,22 @@ Translates URI query parameters to MongoDB and LokiJS compatible queries. This i
 
 ## Features
 
--   Aliased query parameters
--   Blacklisted query parameters
--   Whitelisted query parameters
--   Basic operators
-    -   `$eq`
-    -   `$gt`
-    -   `$gte`
-    -   `$lt`
-    -   `$lte`
-    -   `$ne`
-    -   `$in`
-    -   `$nin`
-    -   `$exists`
-    -   `$regex`
--   Parse string integers and floats to numbers
--   Parse string boolean to ture/false booleans
+- Aliased query parameters
+- Blacklisted query parameters
+- Whitelisted query parameters
+- Basic operators
+    - `$eq`
+    - `$gt`
+    - `$gte`
+    - `$lt`
+    - `$lte`
+    - `$ne`
+    - `$in`
+    - `$nin`
+    - `$exists`
+    - `$regex`
+- Parse string integers and floats to numbers
+- Parse string boolean to ture/false booleans
 
 | operation                | query string             | query object                                |
 | ------------------------ | ------------------------ | ------------------------------------------- |
@@ -39,9 +39,9 @@ Translates URI query parameters to MongoDB and LokiJS compatible queries. This i
 | in array                 | `?foo[]=bar&foo[]=baz`   | `{ foo: { $in: ['bar', 'baz'] }}`           |
 | not in array             | `?foo[]=!bar&foo[]=!baz` | `{ foo: { $nin: ['bar', 'baz'] }}`          |
 
--   Geospatial operators
-    -   `$geoWithin` (polygon)
-    -   `$near` (point)
+- Geospatial operators
+    - `$geoWithin` (polygon)
+    - `$near` (point)
 
 | operation                 | query string    | query object                                        |
 | ------------------------- | --------------- | --------------------------------------------------- |
@@ -66,16 +66,16 @@ import { QueryTranslator } from "@js-soft/docdb-querytranslator";
 
 ### new QueryTranslator(`object` options)
 
--   `Array` ops - list of supported operators (default: `['!', '^', '$', '~', '>', '<', '$in']`)
--   `object` alias - query param aliases (default: `{}`)
--   `object` blacklist - blacklisted query params (default: `{}`)
--   `object` whitelist - whitelisted query params (default: `{}`)
--   `object` custom - custom query params (default: `{}`)
--   `object` string - string parsing
-    -   `boolean` toBoolean - parse `"true"`, `"false"` string to booleans (default: `true`)
-    -   `boolean` toNumber - parse string integer and float values to numbers (default: `true`)
--   `regexp` keyRegex - allowed key names (default: `/^[a-zA-Z_@][a-zA-Z@0-9-_]*(\.[a-zA-Z_@][a-zA-Z@0-9-_]*)*$/`)
--   `regexp` arrRegex - allowed array key names (default: `/^[a-zæøå0-9-_.]+(\[\])?$/i`)
+- `Array` ops - list of supported operators (default: `['!', '^', '$', '~', '>', '<', '$in']`)
+- `object` alias - query param aliases (default: `{}`)
+- `object` blacklist - blacklisted query params (default: `{}`)
+- `object` whitelist - whitelisted query params (default: `{}`)
+- `object` custom - custom query params (default: `{}`)
+- `object` string - string parsing
+    - `boolean` toBoolean - parse `"true"`, `"false"` string to booleans (default: `true`)
+    - `boolean` toNumber - parse string integer and float values to numbers (default: `true`)
+- `regexp` keyRegex - allowed key names (default: `/^[a-zA-Z_@][a-zA-Z@0-9-_]*(\.[a-zA-Z_@][a-zA-Z@0-9-_]*)*$/`)
+- `regexp` arrRegex - allowed array key names (default: `/^[a-zæøå0-9-_.]+(\[\])?$/i`)
 
 #### Define custom queries
 
@@ -172,100 +172,100 @@ mongo
 
 ### known incompatibilities
 
--   matching objects in an array (e.g. `{ "an-array": ["a-string"] }` requires `{"an-array": "a-string"}` (if you want to search for a single string) or `{"an-array": {"$in": ["string-1", "string-2"]}` (if you want to search for one of multiple strings) for MongoDB and `{"an-array": {"$contains": "a-string"}}` (if you want to search for a single string) or `{"an-array": {"$containsAny": ["string-1", "string-2]}}` (if you want to search for one of multiple strings) for LokiJS)
+- matching objects in an array (e.g. `{ "an-array": ["a-string"] }` requires `{"an-array": "a-string"}` (if you want to search for a single string) or `{"an-array": {"$in": ["string-1", "string-2"]}` (if you want to search for one of multiple strings) for MongoDB and `{"an-array": {"$contains": "a-string"}}` (if you want to search for a single string) or `{"an-array": {"$containsAny": ["string-1", "string-2]}}` (if you want to search for one of multiple strings) for LokiJS)
 
     The mongodb parser therefore will
 
-    -   accept `$contains` and rewrite `{"an-array": {"$contains": "a-string"}}` to `{"an-array": "a-string"}`
-    -   accept `$containsAny` and rewrite `{"an-array": {"$containsAny": ["string-1", "string-2]}}` to `{"an-array": {"$in": ["string-1", "string-2]}}`
-    -   accept `$containsNone` and rewrite `{"an-array": {"$containsNone": ["string-1", "string-2]}}` to `{"an-array": {"$nin": ["string-1", "string-2]}}`
+    - accept `$contains` and rewrite `{"an-array": {"$contains": "a-string"}}` to `{"an-array": "a-string"}`
+    - accept `$containsAny` and rewrite `{"an-array": {"$containsAny": ["string-1", "string-2]}}` to `{"an-array": {"$in": ["string-1", "string-2]}}`
+    - accept `$containsNone` and rewrite `{"an-array": {"$containsNone": ["string-1", "string-2]}}` to `{"an-array": {"$nin": ["string-1", "string-2]}}`
 
 ### LokiJs Operators
 
--   `$eq` - filter for document(s) with property of (strict) equality
--   `$ne` - filter for document(s) with property not equal to provided value
--   `$aeq` - filter for document(s) with property of abstract (loose) equality
--   `$dteq` - filter for document(s) with date property equal to provided date value
--   `$gt` - filter for document(s) with property greater than provided value
--   `$gte` - filter for document(s) with property greater or equal to provided value
--   `$lt` - filter for document(s) with property less than provided value
--   `$lte` - filter for document(s) with property less than or equal to provided value
--   `$between` - filter for documents(s) with property between provided vals
--   `$jgte` - filter (using simplified javascript comparison) for docs with property greater than or equal to provided value
--   `$jlt` - filter (using simplified javascript comparison) for docs with property less than provided value
--   `$jlte` - filter (using simplified javascript comparison) for docs with property less than or equal to provided value
--   `$jbetween` - filter (using simplified javascript comparison) for docs with property between provided vals
--   `$regex` - filter for document(s) with property matching provided regular expression
--   `$in` - filter for document(s) with property matching any of the provided array values. Your property should not be an array but your compare values should be.
--   `$nin` - filter for document(s) with property not matching any of the provided array values.
--   `$keyin` - filter for document(s) whose property value is defined in the provided hash object keys. (Equivalent to $in: Object.keys(hashObject)) ( #362, #365 )
--   `$nkeyin` - filter for document(s) whose property value is not defined in the provided hash object keys. (Equivalent to $nin: Object.keys(hashObject)) ( #362, #365 )
--   `$definedin` - filter for document(s) whose property value is defined in the provided hash object as a value other than undefined. #285
--   `$undefinedin` - filter for document(s) whose property value is not defined in the provided hash object or defined but is undefined. #285
--   `$contains` - filter for document(s) with property containing the provided value. ( commit, #205 ). Use this when your property contains an array but your compare value is not an array.
--   `$containsAny` - filter for document(s) with property containing any of the provided values. Use this when your property contains an array -and- your compare value is an array.
--   `$containsNone` - filter for documents(s) with property containing none of the provided values
--   `$type` - filter for documents which have a property of a specified type
--   `$finite` - filter for documents with property which is numeric or non-numeric.
--   `$size` - filter for documents which have array property of specified size. (does not work for strings)
--   `$len` - filter for documents which have string property of specified length.
--   `$and` - filter for documents which meet all nested subexpressions
--   `$or` - filter for documents which meet any of the nested subexpressions
--   `$exists` - filter for documents which contain (even when the value is null) this field or not
+- `$eq` - filter for document(s) with property of (strict) equality
+- `$ne` - filter for document(s) with property not equal to provided value
+- `$aeq` - filter for document(s) with property of abstract (loose) equality
+- `$dteq` - filter for document(s) with date property equal to provided date value
+- `$gt` - filter for document(s) with property greater than provided value
+- `$gte` - filter for document(s) with property greater or equal to provided value
+- `$lt` - filter for document(s) with property less than provided value
+- `$lte` - filter for document(s) with property less than or equal to provided value
+- `$between` - filter for documents(s) with property between provided vals
+- `$jgte` - filter (using simplified javascript comparison) for docs with property greater than or equal to provided value
+- `$jlt` - filter (using simplified javascript comparison) for docs with property less than provided value
+- `$jlte` - filter (using simplified javascript comparison) for docs with property less than or equal to provided value
+- `$jbetween` - filter (using simplified javascript comparison) for docs with property between provided vals
+- `$regex` - filter for document(s) with property matching provided regular expression
+- `$in` - filter for document(s) with property matching any of the provided array values. Your property should not be an array but your compare values should be.
+- `$nin` - filter for document(s) with property not matching any of the provided array values.
+- `$keyin` - filter for document(s) whose property value is defined in the provided hash object keys. (Equivalent to $in: Object.keys(hashObject)) ( #362, #365 )
+- `$nkeyin` - filter for document(s) whose property value is not defined in the provided hash object keys. (Equivalent to $nin: Object.keys(hashObject)) ( #362, #365 )
+- `$definedin` - filter for document(s) whose property value is defined in the provided hash object as a value other than undefined. #285
+- `$undefinedin` - filter for document(s) whose property value is not defined in the provided hash object or defined but is undefined. #285
+- `$contains` - filter for document(s) with property containing the provided value. ( commit, #205 ). Use this when your property contains an array but your compare value is not an array.
+- `$containsAny` - filter for document(s) with property containing any of the provided values. Use this when your property contains an array -and- your compare value is an array.
+- `$containsNone` - filter for documents(s) with property containing none of the provided values
+- `$type` - filter for documents which have a property of a specified type
+- `$finite` - filter for documents with property which is numeric or non-numeric.
+- `$size` - filter for documents which have array property of specified size. (does not work for strings)
+- `$len` - filter for documents which have string property of specified length.
+- `$and` - filter for documents which meet all nested subexpressions
+- `$or` - filter for documents which meet any of the nested subexpressions
+- `$exists` - filter for documents which contain (even when the value is null) this field or not
 
 ### MongoDb Operators
 
 #### Query
 
--   `$eq` Matches values that are equal to a specified value.
--   `$gt` Matches values that are greater than a specified value.
--   `$gte` Matches values that are greater than or equal to a specified value.
--   `$in` Matches any of the values specified in an array.
--   `$lt` Matches values that are less than a specified value.
--   `$lte` Matches values that are less than or equal to a specified value.
--   `$ne` Matches all values that are not equal to a specified value.
--   `$nin` Matches none of the values specified in an array.
+- `$eq` Matches values that are equal to a specified value.
+- `$gt` Matches values that are greater than a specified value.
+- `$gte` Matches values that are greater than or equal to a specified value.
+- `$in` Matches any of the values specified in an array.
+- `$lt` Matches values that are less than a specified value.
+- `$lte` Matches values that are less than or equal to a specified value.
+- `$ne` Matches all values that are not equal to a specified value.
+- `$nin` Matches none of the values specified in an array.
 
 #### Logical
 
--   `$and` Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.
--   `$not` Inverts the effect of a query expression and returns documents that do not match the query expression.
--   `$nor` Joins query clauses with a logical NOR returns all documents that fail to match both clauses.
--   `$or` Joins query clauses with a logical OR returns all documents that match the conditions of either clause.
+- `$and` Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.
+- `$not` Inverts the effect of a query expression and returns documents that do not match the query expression.
+- `$nor` Joins query clauses with a logical NOR returns all documents that fail to match both clauses.
+- `$or` Joins query clauses with a logical OR returns all documents that match the conditions of either clause.
 
 #### Element
 
--   `$exists` Matches documents that have the specified field.
--   `$type` Selects documents if a field is of the specified type.
+- `$exists` Matches documents that have the specified field.
+- `$type` Selects documents if a field is of the specified type.
 
 #### Evaluation
 
--   `$expr` Allows use of aggregation expressions within the query language.
--   `$jsonSchema` Validate documents against the given JSON Schema.
--   `$mod` Performs a modulo operation on the value of a field and selects documents with a specified result.
--   `$regex` Selects documents where values match a specified regular expression.
--   `$text` Performs text search.
--   `$where` Matches documents that satisfy a JavaScript expression.
+- `$expr` Allows use of aggregation expressions within the query language.
+- `$jsonSchema` Validate documents against the given JSON Schema.
+- `$mod` Performs a modulo operation on the value of a field and selects documents with a specified result.
+- `$regex` Selects documents where values match a specified regular expression.
+- `$text` Performs text search.
+- `$where` Matches documents that satisfy a JavaScript expression.
 
 #### Geospatial
 
--   `$geoIntersects` Selects geometries that intersect with a GeoJSON geometry. The 2dsphere index supports $geoIntersects.
--   `$geoWithin` Selects geometries within a bounding GeoJSON geometry. The 2dsphere and 2d indexes support $geoWithin.
--   `$near` Returns geospatial objects in proximity to a point. Requires a geospatial index. The 2dsphere and 2d indexes support $near.
--   `$nearS` Returns geospatial objects in proximity to a point on a sphere. Requires a geospatial index. The 2dsphere and 2d indexes support $nearSphere.
+- `$geoIntersects` Selects geometries that intersect with a GeoJSON geometry. The 2dsphere index supports $geoIntersects.
+- `$geoWithin` Selects geometries within a bounding GeoJSON geometry. The 2dsphere and 2d indexes support $geoWithin.
+- `$near` Returns geospatial objects in proximity to a point. Requires a geospatial index. The 2dsphere and 2d indexes support $near.
+- `$nearS` Returns geospatial objects in proximity to a point on a sphere. Requires a geospatial index. The 2dsphere and 2d indexes support $nearSphere.
 
 #### Array
 
--   `$all` Matches arrays that contain all elements specified in the query.
--   `$elemMatch` Selects documents if element in the array field matches all the specified $elemMatch conditions.
--   `$size` Selects documents if the array field is a specified size.
+- `$all` Matches arrays that contain all elements specified in the query.
+- `$elemMatch` Selects documents if element in the array field matches all the specified $elemMatch conditions.
+- `$size` Selects documents if the array field is a specified size.
 
 #### Bitwise
 
--   `$bitsAllClear` Matches numeric or binary values in which a set of bit positions all have a value of 0.
--   `$bitsAllSet` Matches numeric or binary values in which a set of bit positions all have a value of 1.
--   `$bitsAnyClear` Matches numeric or binary values in which any bit from a set of bit positions has a value of 0.
--   `$bitsAnySet` Matches numeric or binary values in which any bit from a set of bit positions has a value of 1.
+- `$bitsAllClear` Matches numeric or binary values in which a set of bit positions all have a value of 0.
+- `$bitsAllSet` Matches numeric or binary values in which a set of bit positions all have a value of 1.
+- `$bitsAnyClear` Matches numeric or binary values in which any bit from a set of bit positions has a value of 0.
+- `$bitsAnySet` Matches numeric or binary values in which any bit from a set of bit positions has a value of 1.
 
 ## Credits
 
