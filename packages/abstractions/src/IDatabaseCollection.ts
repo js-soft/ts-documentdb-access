@@ -5,6 +5,11 @@ export interface DatabasePaginationOptions {
     skip?: number;
 }
 
+export interface DatabaseSortOptions {
+    sortBy: string;
+    sortOrder: "asc" | "desc";
+}
+
 export interface IDatabaseCollection {
     readonly databaseType: DatabaseType;
     readonly name: string;
@@ -19,7 +24,7 @@ export interface IDatabaseCollection {
 
     list(): Promise<any[]>;
 
-    find(query?: any, paginationOptions?: DatabasePaginationOptions): Promise<any[]>;
+    find(query?: any, paginationOptions?: DatabasePaginationOptions, sortOptions?: DatabaseSortOptions): Promise<any[]>;
 
     findOne(query?: any): Promise<any>;
 
