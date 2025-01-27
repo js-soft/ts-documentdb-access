@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { DatabasePaginationOptions, DatabaseType, IDatabaseCollection } from "@js-soft/docdb-access-abstractions";
+import {
+    DatabasePaginationOptions,
+    DatabaseSortOptions,
+    DatabaseType,
+    IDatabaseCollection
+} from "@js-soft/docdb-access-abstractions";
 
 export class LokiJsCollection implements IDatabaseCollection {
     public readonly name: string;
@@ -60,8 +65,16 @@ export class LokiJsCollection implements IDatabaseCollection {
         return this.collection.chain().data();
     }
 
-    public async find(query?: any, paginationOptions?: DatabasePaginationOptions): Promise<any[]> {
+    public async find(
+        query?: any,
+        paginationOptions?: DatabasePaginationOptions,
+        sortOptions?: DatabaseSortOptions
+    ): Promise<any[]> {
         let cursor = this.collection.chain().find(query);
+
+        if (sortOptions) {
+            cursor = cursor.simplesort(sortOptions.sortBy, { desc: sortOptions.sortOrder === "desc" });
+        }
 
         if (paginationOptions) {
             if (paginationOptions.skip) cursor = cursor.offset(paginationOptions.skip);
