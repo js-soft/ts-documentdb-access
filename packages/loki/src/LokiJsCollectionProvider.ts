@@ -11,7 +11,7 @@ export class LokiJsCollectionProvider implements IDatabaseCollectionProvider {
     private getLokidbCollection(name: string) {
         let collection = this.db.getCollection(name);
 
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/prefer-nullish-coalescing
         if (collection === null) {
             collection = this.db.addCollection(name);
         }
