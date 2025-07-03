@@ -86,7 +86,6 @@ export class QueryTranslator {
                         ret.value = `${val}$`;
                         break;
                     case "~":
-                        break;
                     default:
                         break;
                 }
