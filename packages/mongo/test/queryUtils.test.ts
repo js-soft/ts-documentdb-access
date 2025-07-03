@@ -34,7 +34,7 @@ describe("queryUtils", () => {
                     $eq: "a-string"
                 }
             })
-        ).toThrowError("Unsupported query: an object with $contains must not have additional properties");
+        ).toThrow("Unsupported query: an object with $contains must not have additional properties");
     });
 
     test("replaces $containsAny with $in", () => {
