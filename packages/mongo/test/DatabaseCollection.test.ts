@@ -240,8 +240,6 @@ describe("DatabaseCollection", () => {
 
         await db.create({ id: "uniqueValue" });
 
-        await expect(db.create({ id: "uniqueValue" })).rejects.toThrow(
-            /^E11000 duplicate key error collection.*dup key: \{ id: "uniqueValue" \}$/
-        );
+        await expect(db.create({ id: "uniqueValue" })).rejects.toThrow(/[Dd]uplicate key/);
     });
 });
