@@ -7,10 +7,12 @@ let database: LokiJsCollectionProvider;
 beforeAll(async () => {
     database = await connection.getDatabase(Math.random().toString(36).substring(7));
 });
+
 afterAll(async () => await connection.close());
 
-async function getRandomCollection() {
-    return await database.getCollection(Math.random().toString(36).substring(7));
+async function getRandomCollection(uniqueIndexes?: string[]) {
+    const name = Math.random().toString(36).substring(7);
+    return await database.getCollection(name, uniqueIndexes);
 }
 
 describe("DatabaseCollection", () => {
@@ -214,5 +216,13 @@ describe("DatabaseCollection", () => {
         const find2 = await db.find(undefined, { skip: 1, limit: 1 }, { sortBy: "value", sortOrder: "desc" });
         expect(find2).toHaveLength(1);
         expect(find2[0].id).toEqual("id1");
+    });
+
+    test("should not allow to create duplicate entries for unique index", async function () {
+        const db = await getRandomCollection(["id"]);
+
+        await db.create({ id: "uniqueValue" });
+
+        await expect(db.create({ id: "uniqueValue" })).rejects.toThrow("Duplicate key for property id: uniqueValue");
     });
 });

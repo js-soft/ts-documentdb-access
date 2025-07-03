@@ -8,19 +8,19 @@ export class LokiJsCollectionProvider implements IDatabaseCollectionProvider {
         private readonly onClosed: Function
     ) {}
 
-    private getLokidbCollection(name: string) {
+    private getLokidbCollection(name: string, uniqueIndexes?: string[]) {
         let collection = this.db.getCollection(name);
 
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         if (collection === null) {
-            collection = this.db.addCollection(name);
+            collection = this.db.addCollection(name, { unique: uniqueIndexes });
         }
 
         return collection;
     }
 
-    public getCollection(name: string): Promise<LokiJsCollection> {
-        const collection = new LokiJsCollection(this.getLokidbCollection(name));
+    public getCollection(name: string, uniqueIndexes?: string[]): Promise<LokiJsCollection> {
+        const collection = new LokiJsCollection(this.getLokidbCollection(name, uniqueIndexes));
         return Promise.resolve(collection);
     }
 
