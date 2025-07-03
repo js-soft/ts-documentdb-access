@@ -6,13 +6,13 @@ services:
       - 27020:27017
 
   postgres:
-    image: postgres
+    image: ghcr.io/ferretdb/postgres-documentdb:latest
     container_name: database-ferretdb-postgres
     hostname: postgres
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=ferretdb
+      - POSTGRES_DB=postgres
 
   ferret:
     image: ghcr.io/ferretdb/ferretdb:latest
@@ -20,18 +20,9 @@ services:
     ports:
       - "27024:27017"
     environment:
-      FERRETDB_POSTGRESQL_URL: postgres://user:password@postgres:5432/ferretdb
+      FERRETDB_POSTGRESQL_URL: postgres://user:password@postgres:5432/postgres
       FERRETDB_TELEMETRY: disable
       FERRETDB_LOG_LEVEL: error
+      FERRETDB_AUTH: false
     depends_on:
       - postgres
-
-  ferret-sqlite:
-    image: ghcr.io/ferretdb/ferretdb:latest
-    container_name: database-ferretdb-sqlite
-    ports:
-      - "27025:27017"
-    environment:
-      FERRETDB_HANDLER: sqlite
-      FERRETDB_TELEMETRY: disable
-      FERRETDB_LOG_LEVEL: error
