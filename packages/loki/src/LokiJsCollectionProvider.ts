@@ -12,9 +12,7 @@ export class LokiJsCollectionProvider implements IDatabaseCollectionProvider {
         let collection = this.db.getCollection(name);
 
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        if (collection === null) {
-            collection = this.db.addCollection(name, { unique: uniqueIndexes });
-        }
+        collection ??= this.db.addCollection(name, { unique: uniqueIndexes });
 
         return collection;
     }
