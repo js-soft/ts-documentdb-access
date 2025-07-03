@@ -9,7 +9,7 @@
         "directory": "packages/querytranslator"
     },
     "license": "MIT",
-    "author": "j&s-soft GmbH",
+    "author": "j&s-soft AG",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
