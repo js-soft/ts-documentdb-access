@@ -10,9 +10,14 @@ export class MongoDbCollectionProvider implements IDatabaseCollectionProvider {
         this.db = db;
     }
 
-    public getCollection(name: string): Promise<MongoDbCollection> {
-        const collection = new MongoDbCollection(this.db.collection(name));
-        return Promise.resolve(collection);
+    public async getCollection(name: string, uniqueIndexes?: string[]): Promise<MongoDbCollection> {
+        const collection = this.db.collection(name);
+        if (uniqueIndexes && uniqueIndexes.length > 0) {
+            for (const uniqueIndex of uniqueIndexes) {
+                await collection.createIndex({ [uniqueIndex]: 1 }, { unique: true });
+            }
+        }
+        return new MongoDbCollection(collection);
     }
 
     public async getMap(name: string): Promise<MongoDbMap> {
