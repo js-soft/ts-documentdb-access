@@ -1,4 +1,3 @@
-import { describe, expect, test } from "@jest/globals";
 import { removeContainsInQuery } from "../src/queryUtils";
 
 describe("queryUtils", () => {
@@ -134,6 +133,6 @@ describe("queryUtils", () => {
     });
 
     test("accepts undefined", () => {
-        expect(removeContainsInQuery(undefined)).toStrictEqual(undefined);
+        expect(removeContainsInQuery(undefined)).toBeUndefined();
     });
 });

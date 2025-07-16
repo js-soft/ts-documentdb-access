@@ -1,4 +1,3 @@
-import { afterAll, beforeAll, describe } from "@jest/globals";
 import { MongoDbConnection } from "@js-soft/docdb-access-mongo";
 import { TestRunner } from "./TestRunner";
 
@@ -13,4 +12,5 @@ beforeAll(async () => {
 
 afterAll(async () => await connection.close());
 
+// eslint-disable-next-line jest/valid-describe-callback
 describe("mongodb test", () => testRunner.run());

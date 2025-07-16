@@ -1,22 +1,7 @@
 {
+    "extends": "../../tsconfig.base.json",
     "compilerOptions": {
-        "target": "esnext",
-        "module": "commonjs",
-        "sourceMap": true,
-        "declaration": true,
-        "declarationMap": true,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "outDir": "dist",
-        "allowSyntheticDefaultImports": true,
-        "esModuleInterop": true,
-        "moduleResolution": "node",
-        "forceConsistentCasingInFileNames": true,
-        "downlevelIteration": true,
-        "noImplicitReturns": true,
-        "strictNullChecks": true,
-        "lib": ["esnext", "dom"],
-        "baseUrl": ""
+        "outDir": "dist"
     },
     "include": ["src/**/*.ts"]
 }

@@ -1,4 +1,4 @@
-import { expect, test } from "@jest/globals";
+/* eslint-disable jest/no-standalone-expect,jest/expect-expect,jest/no-export */
 import { IDatabaseCollection, IDatabaseCollectionProvider } from "@js-soft/docdb-access-abstractions";
 import qs from "qs";
 import { QueryTranslator } from "../src";
