@@ -1,4 +1,3 @@
-import { afterAll, beforeAll, describe, expect, test } from "@jest/globals";
 import { LokiJsCollectionProvider, LokiJsConnection } from "../src";
 
 const connection = LokiJsConnection.inMemory();
@@ -22,8 +21,8 @@ describe("DatabaseCollection", () => {
         const entry = { id: "test", name: "testtest" };
 
         const createdEntry = await db.create(entry);
-        expect(createdEntry.id).toEqual(entry.id);
-        expect(createdEntry.name).toEqual(entry.name);
+        expect(createdEntry.id).toBe(entry.id);
+        expect(createdEntry.name).toBe(entry.name);
 
         await db.create({ id: "test2", name: "asd" });
 
@@ -32,10 +31,10 @@ describe("DatabaseCollection", () => {
 
         const queriedEntries = await db.find({ id: { $eq: "test" } });
         expect(queriedEntries).toHaveLength(1);
-        expect(queriedEntries[0].name).toEqual(entry.name);
+        expect(queriedEntries[0].name).toBe(entry.name);
 
         const queriedEntry = await db.findOne({ id: { $eq: "test" } });
-        expect(queriedEntry.name).toEqual(entry.name);
+        expect(queriedEntry.name).toBe(entry.name);
     });
 
     test("should query elements", async function () {
@@ -92,9 +91,9 @@ describe("DatabaseCollection", () => {
         await db.create({ id: "test2", value: "test2" });
 
         const value = await db.findOne({ id: "test" });
-        expect(value).not.toBeUndefined();
-        expect(value.value).not.toBeUndefined();
-        expect(value.value).toEqual("test");
+        expect(value).toBeDefined();
+        expect(value.value).toBeDefined();
+        expect(value.value).toBe("test");
     });
 
     test("should update a value", async function () {
@@ -105,45 +104,45 @@ describe("DatabaseCollection", () => {
         await db.update(value, { id: "test", value: "test" });
 
         const queriedValue = await db.findOne({ id: "test" });
-        expect(queriedValue).not.toBeUndefined();
-        expect(queriedValue.value).not.toBeUndefined();
-        expect(queriedValue.value).toEqual("test");
+        expect(queriedValue).toBeDefined();
+        expect(queriedValue.value).toBeDefined();
+        expect(queriedValue.value).toBe("test");
     });
 
     test("should get the count of objects", async function () {
         const db = await getRandomCollection();
 
         let count = await db.count();
-        expect(count).toStrictEqual(0);
+        expect(count).toBe(0);
 
         await db.create({ id: "test", value: "a-string" });
         await db.create({ id: "test", value: "a-string" });
         await db.create({ id: "test", value: "another-string" });
 
         count = await db.count();
-        expect(count).toStrictEqual(3);
+        expect(count).toBe(3);
 
         count = await db.count({ value: "a-string" });
-        expect(count).toStrictEqual(2);
+        expect(count).toBe(2);
     });
 
     test("should check if objects exist", async function () {
         const db = await getRandomCollection();
 
         let exists = await db.exists({});
-        expect(exists).toStrictEqual(false);
+        expect(exists).toBe(false);
 
         await db.create({ id: "test", value: "a-string" });
         await db.create({ id: "test", value: "a-string" });
 
         exists = await db.exists();
-        expect(exists).toStrictEqual(true);
+        expect(exists).toBe(true);
 
         exists = await db.exists({ value: "a-string" });
-        expect(exists).toStrictEqual(true);
+        expect(exists).toBe(true);
 
         exists = await db.exists({ value: "another-string" });
-        expect(exists).toStrictEqual(false);
+        expect(exists).toBe(false);
     });
 
     test("should query with paging", async () => {
@@ -158,8 +157,8 @@ describe("DatabaseCollection", () => {
         const find2 = await db.find(undefined, { skip: 1, limit: 1 });
         expect(find2).toHaveLength(1);
 
-        expect(find1[0].id).not.toEqual(find2[0].id);
-        expect(find1[0].value).not.toEqual(find2[0].value);
+        expect(find1[0].id).not.toBe(find2[0].id);
+        expect(find1[0].value).not.toBe(find2[0].value);
     });
 
     test("should sort ascending", async () => {
@@ -171,8 +170,8 @@ describe("DatabaseCollection", () => {
         const find = await db.find(undefined, undefined, { sortBy: "value", sortOrder: "asc" });
         expect(find).toHaveLength(2);
 
-        expect(find[0].id).toEqual("id1");
-        expect(find[1].id).toEqual("id2");
+        expect(find[0].id).toBe("id1");
+        expect(find[1].id).toBe("id2");
     });
 
     test("should sort descending", async () => {
@@ -184,8 +183,8 @@ describe("DatabaseCollection", () => {
         const find = await db.find(undefined, undefined, { sortBy: "value", sortOrder: "desc" });
         expect(find).toHaveLength(2);
 
-        expect(find[0].id).toEqual("id2");
-        expect(find[1].id).toEqual("id1");
+        expect(find[0].id).toBe("id2");
+        expect(find[1].id).toBe("id1");
     });
 
     test("should query with paging and sorting ascending", async () => {
@@ -196,11 +195,11 @@ describe("DatabaseCollection", () => {
 
         const find1 = await db.find(undefined, { skip: 0, limit: 1 }, { sortBy: "value", sortOrder: "asc" });
         expect(find1).toHaveLength(1);
-        expect(find1[0].id).toEqual("id1");
+        expect(find1[0].id).toBe("id1");
 
         const find2 = await db.find(undefined, { skip: 1, limit: 1 }, { sortBy: "value", sortOrder: "asc" });
         expect(find2).toHaveLength(1);
-        expect(find2[0].id).toEqual("id2");
+        expect(find2[0].id).toBe("id2");
     });
 
     test("should query with paging and sorting descending", async () => {
@@ -211,11 +210,11 @@ describe("DatabaseCollection", () => {
 
         const find1 = await db.find(undefined, { skip: 0, limit: 1 }, { sortBy: "value", sortOrder: "desc" });
         expect(find1).toHaveLength(1);
-        expect(find1[0].id).toEqual("id2");
+        expect(find1[0].id).toBe("id2");
 
         const find2 = await db.find(undefined, { skip: 1, limit: 1 }, { sortBy: "value", sortOrder: "desc" });
         expect(find2).toHaveLength(1);
-        expect(find2[0].id).toEqual("id1");
+        expect(find2[0].id).toBe("id1");
     });
 
     test("should not allow to create duplicate entries for unique index", async function () {

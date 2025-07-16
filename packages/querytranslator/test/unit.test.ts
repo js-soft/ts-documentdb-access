@@ -1,4 +1,3 @@
-import { describe, expect, test } from "@jest/globals";
 import qs from "qs";
 import querystring from "querystring";
 import { QueryTranslator } from "../src";
@@ -15,7 +14,7 @@ describe("parseStringVal()", () => {
     describe("true", () => {
         ["true", "TrUe", "TRUE"].forEach((val) => {
             test(`returns true for "${val}" string`, () => {
-                expect(dbqsWithParsing.parseStringVal(val)).toStrictEqual(true);
+                expect(dbqsWithParsing.parseStringVal(val)).toBe(true);
             });
 
             test(`returns "${val}" for "${val}" when !toBoolean`, () => {
@@ -27,7 +26,7 @@ describe("parseStringVal()", () => {
     describe("false", () => {
         ["false", "FaLsE", "FALSE"].forEach((val) => {
             test(`returns false for "${val}" string`, () => {
-                expect(dbqsWithParsing.parseStringVal(val)).toStrictEqual(false);
+                expect(dbqsWithParsing.parseStringVal(val)).toBe(false);
             });
 
             test(`returns "${val}" for "${val}" when !toBoolean`, () => {
@@ -59,7 +58,7 @@ describe("parseStringVal()", () => {
 
             test(`returns ${ret} for "${val}"`, () => {
                 expect(dbqsWithParsing.parseStringVal(val)).toStrictEqual(ret);
-                expect(dbqsWithParsing.parseStringVal(val)).not.toStrictEqual(NaN);
+                expect(dbqsWithParsing.parseStringVal(val)).not.toBeNaN();
             });
 
             test(`returns "${val}" for "${val}" when !toNumber`, () => {
@@ -94,7 +93,7 @@ describe("parseStringVal()", () => {
 
             test(`returns ${ret} for "${val}"`, () => {
                 expect(dbqsWithParsing.parseStringVal(val)).toStrictEqual(parseFloat(val));
-                expect(dbqsWithParsing.parseStringVal(val)).not.toStrictEqual(NaN);
+                expect(dbqsWithParsing.parseStringVal(val)).not.toBeNaN();
             });
 
             test(`returns "${val}" for "${val}" when !toNumber`, () => {
@@ -273,6 +272,7 @@ describe("parse()", () => {
     const dbqs = new QueryTranslator({
         keyRegex: /^[a-zæøå0-9-_.]+$/i
     });
+
     describe("parsing", () => {
         describe("key value validation", () => {
             test("accepts keys with alpha num names", () => {

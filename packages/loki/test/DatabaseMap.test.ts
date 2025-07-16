@@ -1,4 +1,3 @@
-import { afterAll, beforeAll, describe, expect, test } from "@jest/globals";
 import { LokiJsCollectionProvider, LokiJsConnection } from "../src";
 
 const connection = LokiJsConnection.inMemory();
@@ -23,7 +22,7 @@ describe("DatabaseMap", () => {
         await db.set("test", value);
 
         const queried = await db.get("test");
-        expect(queried).not.toBeUndefined();
+        expect(queried).toBeDefined();
         expect(queried).toStrictEqual(value);
     });
 
@@ -35,13 +34,13 @@ describe("DatabaseMap", () => {
         await db.set("ttest2", { size: 3, name: "test" });
 
         const queriedList = await db.list();
-        expect(queriedList).not.toBeUndefined();
+        expect(queriedList).toBeDefined();
         expect(queriedList).toHaveLength(3);
 
         const filteredList = await db.find("ttest");
-        expect(filteredList).not.toBeUndefined();
+        expect(filteredList).toBeDefined();
         expect(filteredList).toHaveLength(1);
-        expect(filteredList[0].value.size).toEqual(3);
+        expect(filteredList[0].value.size).toBe(3);
     });
 
     test("should find a value by regex", async function () {
@@ -54,7 +53,7 @@ describe("DatabaseMap", () => {
         await db.set("key", value);
 
         const filteredList = await db.find("^k.*");
-        expect(filteredList).not.toBeUndefined();
+        expect(filteredList).toBeDefined();
         expect(filteredList).toHaveLength(1);
         expect(filteredList[0].value).toStrictEqual(value);
     });
@@ -86,9 +85,9 @@ describe("DatabaseMap", () => {
         const db = await getRandomMap();
 
         await db.set("test", "test");
-        expect(await db.get("test")).toEqual("test");
+        expect(await db.get("test")).toBe("test");
 
         await db.set("test", "test2");
-        expect(await db.get("test")).toEqual("test2");
+        expect(await db.get("test")).toBe("test2");
     });
 });
