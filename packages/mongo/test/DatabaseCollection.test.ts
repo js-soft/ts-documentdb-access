@@ -241,4 +241,42 @@ describe("DatabaseCollection", () => {
 
         await expect(db.create({ id: "uniqueValue" })).rejects.toThrow(/[Dd]uplicate key/);
     });
+
+    describe("patch vs update", () => {
+        test("update is not working properly", async () => {
+            const db = await getRandomCollection();
+
+            const entry = { id: "test", name: "test" };
+            const createdEntry = await db.create(entry);
+
+            // this will completely replaced
+            await db.update(createdEntry, { id: "test", name: "updated" });
+
+            // this will not replace the above b/c it's not even found
+            await expect(
+                db.update(createdEntry, { id: "test", name: "test", anotherField: "newField" })
+            ).rejects.toThrow("Document not found for updating");
+
+            const queriedEntry = await db.findOne({ id: "test" });
+            expect(queriedEntry.name).toBe("updated");
+            expect(queriedEntry.anotherField).toBeUndefined();
+        });
+
+        test("patch is better", async () => {
+            const db = await getRandomCollection();
+
+            const entry = { id: "test", name: "test" };
+            const createdEntry = await db.create(entry);
+
+            // this changes name
+            await db.patch(createdEntry, { id: "test", name: "updated" });
+
+            // this only adds another field
+            await db.patch(createdEntry, { id: "test", name: "test", anotherField: "newField" });
+
+            const queriedEntry = await db.findOne({ id: "test" });
+            expect(queriedEntry.name).toBe("updated");
+            expect(queriedEntry.anotherField).toBe("newField");
+        });
+    });
 });
