@@ -49,6 +49,10 @@ export class MongoDbCollection implements IDatabaseCollection {
             data = data.toJSON();
         }
 
+        if (!("id" in oldDoc)) {
+            throw new Error("Patching is not supported for documents with an 'id' field. Use 'update' instead.");
+        }
+
         const patch = jsonpatch.compare(oldDoc, data);
         const filter = { id: oldDoc.id };
 
