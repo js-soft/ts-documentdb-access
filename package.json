@@ -17,15 +17,15 @@
         "test:local": "npm run test:local --workspaces --if-present"
     },
     "devDependencies": {
-        "@js-soft/eslint-config-ts": "2.0.1",
+        "@js-soft/eslint-config-ts": "2.0.3",
         "@js-soft/license-check": "1.0.9",
         "@types/jest": "^30.0.0",
-        "@types/node": "^24.0.14",
-        "eslint": "^9.31.0",
-        "jest": "^30.0.4",
+        "@types/node": "^24.5.2",
+        "eslint": "^9.35.0",
+        "jest": "^30.1.3",
         "prettier": "^3.6.2",
-        "ts-jest": "^29.4.0",
+        "ts-jest": "^29.4.3",
         "ts-node": "^10.9.2",
-        "typescript": "^5.8.3"
+        "typescript": "^5.9.2"
     }
 }
