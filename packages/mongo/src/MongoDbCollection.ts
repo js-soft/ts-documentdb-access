@@ -6,6 +6,7 @@ import {
 } from "@js-soft/docdb-access-abstractions";
 import jsonpatch from "fast-json-patch";
 import { Collection } from "mongodb";
+import { jsonPatchToMongoDbOps } from "./jsonPatchToMongoDbOps";
 import { removeContainsInQuery } from "./queryUtils";
 
 export class MongoDbCollection implements IDatabaseCollection {
@@ -49,39 +50,16 @@ export class MongoDbCollection implements IDatabaseCollection {
         }
 
         const patch = jsonpatch.compare(oldDoc, data);
+        const filter = { id: oldDoc.id };
 
-        const patchMappedToMongoDbOps = patch
-            .filter((v) => v.path !== "/_id")
-            .map((op) => {
-                const path = op.path.startsWith("/")
-                    ? op.path.substring(1).replaceAll("/", ".")
-                    : op.path.replaceAll("/", ".");
+        const operations = await jsonPatchToMongoDbOps(
+            patch.filter((v) => v.path !== "/_id"),
+            filter,
+            this.collection
+        );
+        await this.collection.bulkWrite(operations);
 
-                switch (op.op) {
-                    case "add":
-                    case "replace":
-                        return { $set: { [path]: op.value } };
-                    case "remove":
-                        return { $unset: { [path]: "" } };
-                    case "move":
-                        // TODO: hard to implement
-                        // return { $set: { [op.path]: oldDoc[op.from] }, $unset: { [op.from]: "" } };
-                        throw new Error("Move operation is not supported in MongoDB");
-                    case "copy":
-                        // TODO: hard to implement
-                        // return { $set: { [op.path]: oldDoc[op.from] } };
-                        throw new Error("Move operation is not supported in MongoDB");
-                    case "test":
-                    // Test operations are not supported in MongoDB, so we ignore them
-                    case "_get":
-                    default:
-                        throw new Error(`Unsupported operation: ${op.op}`);
-                }
-            });
-
-        const updated = await this.collection.findOneAndUpdate({ id: oldDoc.id }, patchMappedToMongoDbOps, {
-            returnDocument: "after"
-        });
+        const updated = await this.collection.findOne({ id: oldDoc.id });
 
         if (!updated) {
             throw new Error("Document not found for patching");
