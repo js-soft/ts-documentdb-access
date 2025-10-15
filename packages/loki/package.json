@@ -27,7 +27,7 @@
         "testTimeout": 60000
     },
     "dependencies": {
-        "@js-soft/docdb-access-abstractions": "1.1.0",
+        "@js-soft/docdb-access-abstractions": "1.2.0",
         "@types/lokijs": "1.5.14",
         "lokijs": "1.5.12"
     },

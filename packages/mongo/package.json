@@ -28,8 +28,8 @@
         "testTimeout": 60000
     },
     "dependencies": {
-        "@js-soft/docdb-access-abstractions": "1.1.0",
-        "mongodb": "6.17.0"
+        "@js-soft/docdb-access-abstractions": "1.2.0",
+        "mongodb": "6.20.0"
     },
     "publishConfig": {
         "access": "public",
