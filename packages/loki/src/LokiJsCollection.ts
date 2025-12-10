@@ -50,7 +50,7 @@ export class LokiJsCollection implements IDatabaseCollection {
         }
 
         if (!("id" in oldDocument)) {
-            throw new Error("Patching is not supported for documents with an 'id' field. Use 'update' instead.");
+            throw new Error("Patching is not supported for documents without an 'id' field. Use 'update' instead.");
         }
 
         data.$loki = oldDocument.$loki;
