@@ -4,7 +4,9 @@ import {
     DatabaseType,
     IDatabaseCollection
 } from "@js-soft/docdb-access-abstractions";
+import jsonpatch from "fast-json-patch";
 import { Collection } from "mongodb";
+import { jsonPatchToMongoDbOps } from "./jsonPatchToMongoDbOps";
 import { removeContainsInQuery } from "./queryUtils";
 
 export class MongoDbCollection implements IDatabaseCollection {
@@ -34,16 +36,40 @@ export class MongoDbCollection implements IDatabaseCollection {
     }
 
     public async update(oldDoc: any, data: any): Promise<any> {
-        let doc: any;
+        if (typeof data.toJSON === "function") data = data.toJSON();
 
+        const updateResult = await this.collection.replaceOne(oldDoc, data);
+        if (updateResult.modifiedCount < 1) throw new Error("Document not found for updating");
+
+        return data;
+    }
+
+    public async patch(oldDoc: any, data: any): Promise<any> {
         if (typeof data.toJSON === "function") {
-            doc = data.toJSON();
-        } else {
-            doc = data;
+            data = data.toJSON();
         }
 
-        await this.collection.replaceOne(oldDoc, doc);
-        return data;
+        if (!("id" in oldDoc)) {
+            throw new Error("Patching is not supported for documents without an 'id' field. Use 'update' instead.");
+        }
+
+        const patch = jsonpatch.compare(oldDoc, data);
+        const filter = { id: oldDoc.id };
+
+        const operations = await jsonPatchToMongoDbOps(
+            patch.filter((v) => v.path !== "/_id"),
+            filter,
+            this.collection
+        );
+        await this.collection.bulkWrite(operations);
+
+        const updated = await this.collection.findOne({ id: oldDoc.id });
+
+        if (!updated) {
+            throw new Error("Document not found for patching");
+        }
+
+        return updated;
     }
 
     public async delete(query: any): Promise<boolean> {

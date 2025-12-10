@@ -20,6 +20,8 @@ export interface IDatabaseCollection {
 
     update(oldDoc: any, data: any): Promise<any>;
 
+    patch(oldDoc: any, data: any): Promise<any>;
+
     delete(query: any): Promise<boolean>;
 
     list(): Promise<any[]>;

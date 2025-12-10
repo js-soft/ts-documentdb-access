@@ -5,6 +5,7 @@ import {
     DatabaseType,
     IDatabaseCollection
 } from "@js-soft/docdb-access-abstractions";
+import jsonpatch from "fast-json-patch";
 
 export class LokiJsCollection implements IDatabaseCollection {
     public readonly name: string;
@@ -41,6 +42,30 @@ export class LokiJsCollection implements IDatabaseCollection {
 
         this.collection.update(data);
         return data;
+    }
+
+    public async patch(oldDocument: any, data: any): Promise<any> {
+        if (typeof data.toJSON === "function") {
+            data = data.toJSON();
+        }
+
+        if (!("id" in oldDocument)) {
+            throw new Error("Patching is not supported for documents without an 'id' field. Use 'update' instead.");
+        }
+
+        data.$loki = oldDocument.$loki;
+        data.meta = oldDocument.meta;
+
+        const patch = jsonpatch.compare(oldDocument, data);
+        const updated = this.collection
+            .chain()
+            .find({ id: oldDocument.id }, true)
+            .update((doc) => jsonpatch.applyPatch(doc, patch))
+            .data();
+
+        if (updated.length < 1) throw new Error("Document not found for patching");
+
+        return updated[0];
     }
 
     public async delete(query: any): Promise<boolean> {
