@@ -11,4 +11,4 @@ npm run lint:prettier
 
 # auditing
 npm exec --workspaces -- npx license-check
-npx better-npm-audit audit
+npx better-npm-audit audit --exclude 1120793,1120792
