@@ -9,8 +9,9 @@ jobs:
     name: Validate the Pull Request's labels
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Validate labels
-        run: ./.github/scripts/check-pr.sh
+      - name: PR must be labeled
+        uses: jesusvasquez333/verify-pr-label-action@v1.4.0
+        with:
+          disable-reviews: true
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          valid-labels: "breaking-change, bug, chore, ci, dependencies, documentation, enhancement, refactoring, test, wip"
