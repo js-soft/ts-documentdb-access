@@ -21,4 +21,4 @@ find . -regex "./packages/[A-Za-z-]*/package\.json$" -exec sed -i -e "s/\"\*\"/\
 npm i
 
 # publish all packages
-npm exec --workspaces -c 'enhanced-publish --if-possible --use-preid-as-tag'
+npm exec --workspaces -- npx enhanced-publish --if-possible --use-preid-as-tag
