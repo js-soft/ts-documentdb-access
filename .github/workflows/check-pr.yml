@@ -4,6 +4,11 @@ on:
   pull_request:
     types: [opened, labeled, unlabeled, synchronize]
 
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
 jobs:
   validate-pr-label:
     name: Validate the Pull Request's labels
